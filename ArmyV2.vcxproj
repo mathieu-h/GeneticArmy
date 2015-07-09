@@ -21,6 +21,11 @@
     <ClCompile Include="src\Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExtractorPoint.h" />
+    <ClInclude Include="ExtractorUnit.h" />
+    <ClInclude Include="Extractor.h" />
+    <ClInclude Include="ExtractorArmy.h" />
+    <ClInclude Include="ExtractorValue.h" />
     <ClInclude Include="include\Actions\Action.hpp" />
     <ClInclude Include="include\Actions\EmptyAction.hpp" />
     <ClInclude Include="include\Actions\MoveAction.hpp" />

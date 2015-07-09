@@ -34,6 +34,9 @@
     <Filter Include="Fichiers sources\DecisionTree">
       <UniqueIdentifier>{be2268ba-204d-4092-ba56-c62c68257e17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Extracteurs">
+      <UniqueIdentifier>{8c769ae8-aa11-4ffb-a058-511cfd9f6ed7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AI.cpp">
@@ -133,6 +136,21 @@
     </ClInclude>
     <ClInclude Include="include\configs.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Extractor.h">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtractorArmy.h">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtractorUnit.h">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtractorPoint.h">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtractorValue.h">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
