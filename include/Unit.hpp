@@ -44,6 +44,7 @@ private:
     Point position_;
 
 
+
     //Method in charge of the initialization of id, position(random), and capacities
     void init_();
 

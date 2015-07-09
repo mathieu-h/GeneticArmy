@@ -48,18 +48,18 @@ public:
     Point& operator+=(const Point& p)
     {
         x_+=p.x_;
-		if (x_ > WIDTH/2){
-			x_ = (int)WIDTH/2;
+		if (x_ > Configs::WIDTH/2){
+			x_ = (int)Configs::WIDTH/2;
 		}
-		else if (x_ < -(WIDTH / 2)){
-			x_ = -((int)WIDTH / 2);
+		else if (x_ < -(Configs::WIDTH / 2)){
+			x_ = -((int)Configs::WIDTH / 2);
 		}
         y_+=p.y_;
-		if (y_ > HEIGHT / 2){
-			y_ = (int)HEIGHT / 2;
+		if (y_ > Configs::HEIGHT / 2){
+			y_ = (int)Configs::HEIGHT / 2;
 		}
-		else if (y_ < -(HEIGHT / 2)){
-			y_ = -((int)HEIGHT / 2);
+		else if (y_ < -(Configs::HEIGHT / 2)){
+			y_ = -((int)Configs::HEIGHT / 2);
 		}
         return *this;
     }
@@ -67,18 +67,18 @@ public:
     Point& operator-=(const Point& p)
     {
         x_-=p.x_;
-		if (x_ > WIDTH / 2){
-			x_ = (int)WIDTH / 2;
+		if (x_ > Configs::WIDTH / 2){
+			x_ = (int)Configs::WIDTH / 2;
 		}
-		else if (x_ < -(WIDTH / 2)){
-			x_ = -((int)WIDTH / 2);
+		else if (x_ < -(Configs::WIDTH / 2)){
+			x_ = -((int)Configs::WIDTH / 2);
 		}
         y_-=p.y_;
-		if (y_ > HEIGHT / 2){
-			y_ = (int)HEIGHT / 2;
+		if (y_ > Configs::HEIGHT / 2){
+			y_ = (int)Configs::HEIGHT / 2;
 		}
-		else if (y_ < -(HEIGHT / 2)){
-			y_ = -((int)HEIGHT / 2);
+		else if (y_ < -(Configs::HEIGHT / 2)){
+			y_ = -((int)Configs::HEIGHT / 2);
 		}
         return *this;
     }

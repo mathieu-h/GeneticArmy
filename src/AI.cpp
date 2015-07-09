@@ -18,6 +18,7 @@ std::unique_ptr<Action> AI::operator()(Unit& unit, Army& allies, Army& opponents
         {
             std::string code = unit.getIACode();
             Unit* target;
+
             if(code[1] == 'D')
             {
                 if(code[0]=='L')

@@ -13,19 +13,22 @@ void Unit::init_()
     id_ = idCount_++;
     this->position_ = Point(static_cast<float>(std::rand()%100),static_cast<float>(std::rand()%100));
 	float x_ = position_.getX();
-	if (x_ > WIDTH / 2){
-		x_ = (int)WIDTH / 2;
+	/*
+	if (x_ > Configs::WIDTH / 2){
+		x_ = (int)Configs::WIDTH / 2;
 	}
-	else if (x_ < -(WIDTH / 2)){
-		x_ = -((int)WIDTH / 2);
-	}
+	else if (x_ < -(Configs::WIDTH / 2)){
+		x_ = -((int)Configs::WIDTH / 2);
+	}*/
 	float y_ = position_.getY();
-	if (y_ > HEIGHT / 2){
-		y_ = (int)HEIGHT / 2;
+	/*
+	if (y_ > Configs::HEIGHT / 2){
+		y_ = (int)Configs::HEIGHT / 2;
 	}
-	else if (y_ < -(HEIGHT / 2)){
-		y_ = -((int)HEIGHT / 2);
+	else if (y_ < -(Configs::HEIGHT / 2)){
+		y_ = -((int)Configs::HEIGHT / 2);
 	}
+	*/
     this->capacities_.reserve(7);
     this->capacities_.push_back(std::unique_ptr<Capacity>(new SpeedCapacity()));
     this->capacities_.push_back(std::unique_ptr<Capacity>(new LifeCapacity()));
