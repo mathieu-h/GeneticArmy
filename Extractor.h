@@ -4,6 +4,8 @@
 #include "Army.hpp"
 #include "Unit.hpp"
 
+#define u_ptr std::unique_ptr
+
 template<typename R>
 class Extractor
 {
