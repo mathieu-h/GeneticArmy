@@ -1,42 +1,22 @@
 #pragma once
 #include "Extractor.h"
 
-class ExtractorU : Extractor<Point>
+class ExtractorB : Extractor<Point>
 {
+private:
+	u_ptr<Extractor<Army>> _eA;
 public:
-	ExtractorU();
-	~ExtractorU();
+	ExtractorB(u_ptr<Extractor<Army>> eA) : _eA(std::move(eA)){};
+	~ExtractorB();
 	Point get(Unit currentUnit, Army ally, Army opp);
 };
 
-class ExtractorL : Extractor<Point>
+class ExtractorP : Extractor<Point>
 {
+private:
+	u_ptr<Extractor<Unit>> _eU;
 public:
-	ExtractorL();
-	~ExtractorL();
-	Point get(Unit currentUnit, Army ally, Army opp);
-};
-
-class ExtractorH : Extractor<Point>
-{
-public:
-	ExtractorH();
-	~ExtractorH();
-	Point get(Unit currentUnit, Army ally, Army opp);
-};
-
-class ExtractorLD : Extractor<Point>
-{
-public:
-	ExtractorLD();
-	~ExtractorLD();
-	Point get(Unit currentUnit, Army ally, Army opp);
-};
-
-class ExtractorHD : Extractor<Point>
-{
-public:
-	ExtractorHD();
-	~ExtractorHD();
+	ExtractorP(u_ptr<Extractor<Unit>> eU) : _eU(std::move(eU)){};
+	~ExtractorP();
 	Point get(Unit currentUnit, Army ally, Army opp);
 };

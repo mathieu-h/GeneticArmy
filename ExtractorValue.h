@@ -4,6 +4,7 @@
 
 class ExtractorDirect : Extractor<float>
 {
+private:
 	float _value;
 public:
 	ExtractorDirect(float value): _value(value){};
@@ -16,13 +17,14 @@ public:
 
 class ExtractorC : Extractor<float>
 {
+private:
 	int _index;
 	u_ptr<Extractor<Unit>> _eU;
 public:
 	ExtractorC(int index, u_ptr<Extractor<Unit>>& eU) : _index(index), _eU(std::move(eU)){};
 	~ExtractorC();
 	float get(Unit currentUnit, Army ally, Army opp){
-		return ;
+		return _eU->get(currentUnit, ally, opp).getCapacity(_index)->getValue();
 	}
 };
 
@@ -34,7 +36,9 @@ private:
 public:
 	ExtractorD(u_ptr<Extractor<Unit>>& eU, u_ptr<Extractor<Point>>& eP) :_eU(std::move(eU)), _eP(std::move(eP)){};
 	~ExtractorD();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		return _eU->get(currentUnit, ally, opp).getPosition().distance(_eP->get(currentUnit, ally, opp));
+	}
 };
 
 
@@ -46,7 +50,9 @@ private:
 public:
 	ExtractorM(int index, u_ptr<Extractor<Army>>& eA) : _index(index){}, _eA(std::move(eA)){};
 	~ExtractorM();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		return _eA->get(currentUnit, ally, opp).getHigestUnit(_index).getCapacity(_index)->getValue();
+	}
 };
 
 class Extractorm : Extractor<float>
@@ -57,7 +63,9 @@ private:
 public:
 	Extractorm(int index, u_ptr<Extractor<Army>>& eA) : _index(index){}, _eA(std::move(eA)){};
 	~Extractorm();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		return _eA->get(currentUnit, ally, opp).getLowestUnit(_index).getCapacity(_index)->getValue();
+	}
 };
 
 class Extractora : Extractor<float>
@@ -68,32 +76,42 @@ private:
 public:
 	Extractora(int index, u_ptr<Extractor<Army>>& eA) : _index(index){}, _eA(std::move(eA)){};
 	~Extractora();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();		
+		int index = _index;
+		float sum = std::accumulate(vUnit.begin(), vUnit.end(), 
+				0, [&index](float a, const Unit* it){return a + it->getCapacity(index)->getValue(); });
+		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
+	}
 };
 
 
 class ExtractorMD: Extractor<float>
 {
 private:
-	int _index;
 	u_ptr<Extractor<Army>> _eA;
 	u_ptr<Extractor<Point>> _eP;
 public:
-	ExtractorMD(int index, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _index(index){}, _eA(std::move(eA)), _eP(std::move(eP)){};
+	ExtractorMD(u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorMD();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		Point p = _eP->get(currentUnit, ally, opp);
+		return _eA->get(currentUnit, ally, opp).getFurthestUnit(p).getPosition().distance(p);
+	}
 };
 
 class ExtractormD : Extractor<float>
 {
 private:
-	int _index;
 	u_ptr<Extractor<Army>> _eA;
 	u_ptr<Extractor<Point>> _eP;
 public:
-	ExtractormD(int index, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _index(index){}, _eA(std::move(eA)), _eP(std::move(eP)){};
+	ExtractormD(u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractormD();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		Point p = _eP->get(currentUnit, ally, opp);
+		return _eA->get(currentUnit, ally, opp).getNearestUnit(p).getPosition().distance(p);
+	}
 };
 
 class ExtractoraD : Extractor<float>
@@ -105,6 +123,12 @@ private:
 public:
 	ExtractoraD(int index, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _index(index){}, _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractoraD();
-	float get(Unit currentUnit, Army ally, Army opp);
+	float get(Unit currentUnit, Army ally, Army opp){
+		Point p = _eP->get(currentUnit, ally, opp);
+		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		float sum = std::accumulate(vUnit.begin(), vUnit.end(),
+			0, [&p](float a, const Unit* it){return a + it->getPosition().distance(p); });
+		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
+	}
 };
 

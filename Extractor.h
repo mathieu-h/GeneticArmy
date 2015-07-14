@@ -3,6 +3,10 @@
 #pragma once
 #include "Army.hpp"
 #include "Unit.hpp"
+#include <algorithm>
+#include <functional>
+#include <vector>
+#include <numeric>
 
 #define u_ptr std::unique_ptr
 
