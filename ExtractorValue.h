@@ -2,7 +2,7 @@
 #include "Extractor.h"
 
 
-class ExtractorDirect : Extractor<float>
+class ExtractorDirect : public Extractor<float>
 {
 private:
 	float _value;
@@ -15,7 +15,7 @@ public:
 };
 
 
-class ExtractorC : Extractor<float>
+class ExtractorC : public Extractor<float>
 {
 private:
 	int _index;
@@ -28,7 +28,7 @@ public:
 	}
 };
 
-class ExtractorD : Extractor<float>
+class ExtractorD : public Extractor<float>
 {
 private:
 	u_ptr<Extractor<Unit>> _eU;
@@ -42,7 +42,7 @@ public:
 };
 
 
-class ExtractorM : Extractor<float>
+class ExtractorM : public Extractor<float>
 {
 private:
 	int _index;
@@ -55,7 +55,7 @@ public:
 	}
 };
 
-class Extractorm : Extractor<float>
+class Extractorm : public Extractor<float>
 {
 private:
 	int _index;
@@ -68,7 +68,7 @@ public:
 	}
 };
 
-class Extractora : Extractor<float>
+class Extractora : public Extractor<float>
 {
 private:
 	int _index;
@@ -86,7 +86,7 @@ public:
 };
 
 
-class ExtractorMD: Extractor<float>
+class ExtractorMD : public Extractor<float>
 {
 private:
 	u_ptr<Extractor<Army>> _eA;
@@ -100,7 +100,7 @@ public:
 	}
 };
 
-class ExtractormD : Extractor<float>
+class ExtractormD : public Extractor<float>
 {
 private:
 	u_ptr<Extractor<Army>> _eA;
@@ -114,7 +114,7 @@ public:
 	}
 };
 
-class ExtractoraD : Extractor<float>
+class ExtractoraD : public Extractor<float>
 {
 private:
 	int _index;

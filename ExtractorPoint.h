@@ -1,12 +1,12 @@
 #pragma once
 #include "Extractor.h"
 
-class ExtractorB : Extractor<Point>
+class ExtractorB : public Extractor<Point>
 {
 private:
 	u_ptr<Extractor<Army>> _eA;
 public:
-	ExtractorB(u_ptr<Extractor<Army>> eA) : _eA(std::move(eA)){};
+	ExtractorB(u_ptr<Extractor<Army>>& eA) : _eA(std::move(eA)){};
 	~ExtractorB();
 	// return the barycenter of all units in the set
 	Point get(Unit currentUnit, Army ally, Army opp){
@@ -20,12 +20,12 @@ public:
 	}
 };
 
-class ExtractorP : Extractor<Point>
+class ExtractorP : public Extractor<Point>
 {
 private:
 	u_ptr<Extractor<Unit>> _eU;
 public:
-	ExtractorP(u_ptr<Extractor<Unit>> eU) : _eU(std::move(eU)){};
+	ExtractorP(u_ptr<Extractor<Unit>>& eU) : _eU(std::move(eU)){};
 	~ExtractorP();
 	Point get(Unit currentUnit, Army ally, Army opp){
 		return _eU->get(currentUnit, ally, opp).getPosition();
