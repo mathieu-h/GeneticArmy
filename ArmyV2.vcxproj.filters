@@ -152,5 +152,8 @@
     <ClInclude Include="ExtractorValue.h">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
+    <ClInclude Include="ExtractorBuilder.h">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

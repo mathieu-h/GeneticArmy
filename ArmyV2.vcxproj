@@ -21,6 +21,7 @@
     <ClCompile Include="src\Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExtractorBuilder.h" />
     <ClInclude Include="ExtractorPoint.h" />
     <ClInclude Include="ExtractorUnit.h" />
     <ClInclude Include="Extractor.h" />
