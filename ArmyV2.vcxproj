@@ -21,12 +21,6 @@
     <ClCompile Include="src\Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ExtractorBuilder.h" />
-    <ClInclude Include="ExtractorPoint.h" />
-    <ClInclude Include="ExtractorUnit.h" />
-    <ClInclude Include="Extractor.h" />
-    <ClInclude Include="ExtractorArmy.h" />
-    <ClInclude Include="ExtractorValue.h" />
     <ClInclude Include="include\Actions\Action.hpp" />
     <ClInclude Include="include\Actions\EmptyAction.hpp" />
     <ClInclude Include="include\Actions\MoveAction.hpp" />
@@ -45,6 +39,12 @@
     <ClInclude Include="include\DecisionTree\ActionNode.hpp" />
     <ClInclude Include="include\DecisionTree\DecisionNode.hpp" />
     <ClInclude Include="include\DecisionTree\INode.hpp" />
+    <ClInclude Include="include\Extractors\Extractor.hpp" />
+    <ClInclude Include="include\Extractors\ExtractorArmy.hpp" />
+    <ClInclude Include="include\Extractors\ExtractorBuilder.hpp" />
+    <ClInclude Include="include\Extractors\ExtractorPoint.hpp" />
+    <ClInclude Include="include\Extractors\ExtractorUnit.hpp" />
+    <ClInclude Include="include\Extractors\ExtractorValue.hpp" />
     <ClInclude Include="include\Filters\IFilters.hpp" />
     <ClInclude Include="include\IA\AI.hpp" />
     <ClInclude Include="include\IA\TreeIA.hpp" />
@@ -92,7 +92,8 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\include;D:\Google Drive\4EME 3DJV\C++\boost_1_58_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

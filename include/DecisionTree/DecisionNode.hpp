@@ -5,15 +5,18 @@
 #include <functional>
 
 #include "INode.hpp"
-
+#include "Extractors/Extractor.hpp"
+#include "Extractors/ExtractorBuilder.hpp"
 #include "ActionNode.hpp"
 #include "Army.hpp"
+#include "boost/algorithm/string.hpp"
+#include <boost/algorithm/string/predicate.hpp>
+
 
 class DecisionNode : INode
 {
 public:
     DecisionNode();
-    
     std::unique_ptr<Action> getValue();
 protected:
     std::unique_ptr<INode> n_left;
@@ -30,9 +33,37 @@ protected:
 
 	bool chooseChildNode(){
 		// Parser le code du node en deux sous codes (détecter le '<' ou '>')
+		// Remove the '?' element from the stringsteam
+		char s;
+		code >> s;
+		// Extract the code of the first child
+		std::string strFull = code.str();
+		std::vector<std::string> strs;
+		boost::split(strs, strFull, boost::is_any_of("?!<>"));
+		std::string firstChildCode = strs.at(1);
+		std::string secondChildCode = strs.at(2);
+		std::stringstream firstChildSS;
+		std::stringstream secondChildSS;
+		firstChildSS << firstChildCode;
+		secondChildSS << secondChildCode;
 		// Créer les extracteurs correspondants et comparer leurs valeurs de retour avec le '<' ou '>'
 		// Se diriger vers le fils correspondant
 		//std::stringstream subcode1 = code
+		//Extractor 
+		std::string army = "AONT";
+		std::string point = "BP";
+		std::string unit = "ULH";
+		std::string value = "CDMma";
+		float value = 0;
+		//if (army.find(firstchildcode[0]) != std::string::npos)
+		//	extractorbuilder::getinstance()->buildarmyextractor(firstchildss)->get();
+		//if (point.find(firstchildcode[0]) != std::string::npos)
+		//	extractorbuilder::getinstance()->buildpointextractor(firstchildss)->get();
+		//if (unit.find(firstchildcode[0]) != std::string::npos)
+		//	extractorbuilder::getinstance()->buildunitextractor(firstchildss)->get();
+		//if (value.find(firstchildcode[0]) != std::string::npos)
+		//	extractorbuilder::getinstance()->buildvalueextractor(firstchildss)->get();
+
 		//std::stringstream subcode2 = code
 	}
 };

@@ -137,22 +137,22 @@
     <ClInclude Include="include\configs.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Extractor.h">
+    <ClInclude Include="include\Extractors\Extractor.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
-    <ClInclude Include="ExtractorArmy.h">
+    <ClInclude Include="include\Extractors\ExtractorArmy.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
-    <ClInclude Include="ExtractorUnit.h">
+    <ClInclude Include="include\Extractors\ExtractorBuilder.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
-    <ClInclude Include="ExtractorPoint.h">
+    <ClInclude Include="include\Extractors\ExtractorPoint.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
-    <ClInclude Include="ExtractorValue.h">
+    <ClInclude Include="include\Extractors\ExtractorUnit.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
-    <ClInclude Include="ExtractorBuilder.h">
+    <ClInclude Include="include\Extractors\ExtractorValue.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
     </ClInclude>
   </ItemGroup>

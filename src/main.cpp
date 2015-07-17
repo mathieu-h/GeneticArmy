@@ -2,10 +2,13 @@
 #include <cstdlib>
 #include <time.h>
 #include <iostream>
+#include <string>     
+#include <sstream>
 #include "training.hpp"
 #include "fstream"
 
 #include "Filters/IFilters.hpp"
+#include "boost/algorithm/string.hpp"
 
 void unitTest()
 {
@@ -15,6 +18,22 @@ void unitTest()
 int main(void)
 {
     std::srand(static_cast<unsigned int>(time(nullptr)));
+
+	// TEST FOR SPLIT
+	//std::cout << "toto" << std::endl;
+	//std::stringstream code;
+	//code << "?C1<C3!EB?C2>C4!EB!AN1";
+	//std::string strFull = code.str();
+	//std::vector<std::string> strs;
+	//boost::split(strs, strFull, boost::is_any_of("?!<>"));
+	//std::string firstChildCode = strs.at(1);
+	//std::string secondChildCode = strs.at(2);
+
+	//std::cout << strFull << std::endl;
+	////std::cout << strFull << std::endl;
+	//std::cout << firstChildCode << std::endl;
+	//std::cout << secondChildCode << std::endl;
+
     std::vector<std::unique_ptr<Army> > champions;
     try
     {
@@ -40,6 +59,8 @@ int main(void)
     {
         std::cout << "toto" << std::endl;
     }
+
+
 
     return 0;
 }

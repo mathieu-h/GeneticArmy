@@ -2,16 +2,27 @@
 #include <string>     
 #include <iostream> 
 #include <sstream>
-#include "Extractor.h"
-#include "ExtractorArmy.h"
-#include "ExtractorUnit.h"
-#include "ExtractorPoint.h"
-#include "ExtractorValue.h"
+#include "Extractor.hpp"
+#include "ExtractorArmy.hpp"
+#include "ExtractorUnit.hpp"
+#include "ExtractorPoint.hpp"
+#include "ExtractorValue.hpp"
 
 class ExtractorBuilder
 {
 	private:
+		static ExtractorBuilder* instance;
+		ExtractorBuilder();
+		~ExtractorBuilder();
+
 	public:
+		static ExtractorBuilder* getInstance(){
+			if (instance == nullptr){
+				instance = new ExtractorBuilder();
+			}
+			return instance;
+		}
+
 
 		u_ptr<Extractor<Army>> buildArmyExtractor(std::stringstream& code){
 			char c;
@@ -206,7 +217,4 @@ class ExtractorBuilder
 				}
 			}
 		}
-		
-
-
 };

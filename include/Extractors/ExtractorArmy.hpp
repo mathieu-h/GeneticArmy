@@ -1,5 +1,5 @@
 #pragma once
-#include "Extractor.h"
+#include "Extractor.hpp"
 
 class ExtractorA : public Extractor<Army>
 {
