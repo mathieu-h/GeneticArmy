@@ -38,11 +38,11 @@ public:
 
 	Army get(Unit currentUnit, Army ally, Army opp){
 		int index = _index;
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&index](u_ptr<Unit>& a, u_ptr<Unit>& b){return a->getCapacity(index) < b->getCapacity(index); });
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
+			[&index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) < b->getCapacity(index); });
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
 };
@@ -58,11 +58,11 @@ public:
 	~ExtractorNH();
 	Army get(Unit currentUnit, Army ally, Army opp){
 		int index = _index;
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&index](u_ptr<Unit>& a, u_ptr<Unit>& b){return a->getCapacity(index) > b->getCapacity(index); });
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
+			[&index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) > b->getCapacity(index); });
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
 };
@@ -79,11 +79,11 @@ public:
 	~ExtractorNLD();
 	Army get(Unit currentUnit, Army ally, Army opp){
 		Point p = _eP->get(currentUnit, ally, opp);
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&p](u_ptr<Unit>& a, u_ptr<Unit>& b){return a->getPosition().distance(p) < b->getPosition().distance(p); });
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
+			[&p](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getPosition().distance(p) < b->getPosition().distance(p); });
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
 };
@@ -99,11 +99,11 @@ public:
 	~ExtractorNHD();
 	Army get(Unit currentUnit, Army ally, Army opp){
 		Point p = _eP->get(currentUnit, ally, opp);
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&p](u_ptr<Unit>& a, u_ptr<Unit>& b){return a->getPosition().distance(p) > b->getPosition().distance(p); });
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
+			[&p](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getPosition().distance(p) > b->getPosition().distance(p); });
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
 };
@@ -119,11 +119,11 @@ public:
 	~ExtractorTL();
 	Army get(Unit currentUnit, Army ally, Army opp){
 		_eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.size());
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.size());
 		int index = _index;
 		float treshold = _eV->get(currentUnit, ally, opp);
-		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](u_ptr<Unit>& a){return a->getCapacity(index)->getValue() < treshold; });
+		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](s_ptr<Unit>& a){return a->getCapacity(index)->getValue() < treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
 	}
 };
@@ -139,11 +139,11 @@ public:
 	~ExtractorTH();
 	Army get(Unit currentUnit, Army ally, Army opp){
 		_eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.size());
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.size());
 		int index = _index;
 		float treshold = _eV->get(currentUnit, ally, opp);
-		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](u_ptr<Unit>& a){return a->getCapacity(index)->getValue() > treshold; });
+		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](s_ptr<Unit>& a){return a->getCapacity(index)->getValue() > treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
 	}
 };
@@ -161,11 +161,11 @@ public:
 	Army get(Unit currentUnit, Army ally, Army opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		_eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.size());
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.size());
 
 		float treshold = _eV->get(currentUnit, ally, opp);
-		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](u_ptr<Unit>& a){return a->getPosition().distance(p) < treshold; });
+		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](s_ptr<Unit>& a){return a->getPosition().distance(p) < treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
 	}
 };
@@ -182,11 +182,11 @@ public:
 	Army get(Unit currentUnit, Army ally, Army opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		_eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
-		std::vector<u_ptr<Unit>> nVUnit(vUnit.size());
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>> nVUnit(vUnit.size());
 
 		float treshold = _eV->get(currentUnit, ally, opp);
-		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](u_ptr<Unit>& a){return a->getPosition().distance(p) > treshold; });
+		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](s_ptr<Unit>& a){return a->getPosition().distance(p) > treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
 	}
 };

@@ -77,11 +77,11 @@ public:
 	Extractora(int index, u_ptr<Extractor<Army>>& eA) : _index(index), _eA(std::move(eA)){};
 	~Extractora();
 	float get(Unit currentUnit, Army ally, Army opp){
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		
 		int index = _index;
 		float sum = std::accumulate(vUnit.begin(), vUnit.end(), 
-				0, [&index](float a, u_ptr<Unit>& it){return a + it->getCapacity(index)->getValue(); });
+				0, [&index](float a, s_ptr<Unit>& it){return a + it->getCapacity(index)->getValue(); });
 		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
 	}
 };
@@ -126,9 +126,9 @@ public:
 	~ExtractoraD();
 	float get(Unit currentUnit, Army ally, Army opp){
 		Point p = _eP->get(currentUnit, ally, opp);
-		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float sum = std::accumulate(vUnit.begin(), vUnit.end(),
-			0, [&p](float a, u_ptr<Unit>& it){return a + it->getPosition().distance(p); });
+			0, [&p](float a, s_ptr<Unit>& it){return a + it->getPosition().distance(p); });
 		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
 	}
 };

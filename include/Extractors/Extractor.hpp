@@ -9,6 +9,7 @@
 #include <numeric>
 
 #define u_ptr std::unique_ptr
+#define s_ptr std::shared_ptr
 
 template<typename R>
 class Extractor
