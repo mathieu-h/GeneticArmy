@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ExtractorBuilder.cpp" />
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AI_old.cpp" />
     <ClCompile Include="src\Army.cpp" />
@@ -39,6 +38,7 @@
     <ClInclude Include="include\DecisionTree\ActionNode.hpp" />
     <ClInclude Include="include\DecisionTree\DecisionNode.hpp" />
     <ClInclude Include="include\DecisionTree\INode.hpp" />
+    <ClInclude Include="include\DecisionTree\NodeBuilder.hpp" />
     <ClInclude Include="include\Extractors\Extractor.hpp" />
     <ClInclude Include="include\Extractors\ExtractorArmy.hpp" />
     <ClInclude Include="include\Extractors\ExtractorBuilder.hpp" />
@@ -52,7 +52,6 @@
     <ClInclude Include="include\Point.hpp" />
     <ClInclude Include="include\training.hpp" />
     <ClInclude Include="include\Unit.hpp" />
-    <ClInclude Include="NodeBuilder.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3D6BC7BA-FF56-405F-BE8A-496F6FE486F1}</ProjectGuid>

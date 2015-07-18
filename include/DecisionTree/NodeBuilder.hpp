@@ -4,10 +4,10 @@
 #include <string>     
 #include <iostream> 
 #include <sstream>
-#include "Extractors\Extractor.hpp"
-#include "DecisionTree\INode.hpp"
-#include "DecisionTree\ActionNode.hpp"
-#include "DecisionTree\DecisionNode.hpp"
+#include "Extractors/Extractor.hpp"
+#include "DecisionTree/INode.hpp"
+#include "DecisionTree/DecisionNode.hpp"
+#include "DecisionTree/ActionNode.hpp"
 
 class NodeBuilder
 {
@@ -34,7 +34,7 @@ public:
 			return u_ptr<INode>(new ActionNode(code));
 		}
 		else if (c == '?'){
-			return u_ptr<INode>(new DecisionNode(code));
+			//return u_ptr<INode>(new DecisionNode(code));
 		}
 		//return 
 	}

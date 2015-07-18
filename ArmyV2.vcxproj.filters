@@ -31,14 +31,8 @@
     <Filter Include="Fichiers d%27en-tête\Filters">
       <UniqueIdentifier>{53bc4a83-d5ad-4681-bc50-54b9a032fed6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\DecisionTree">
-      <UniqueIdentifier>{be2268ba-204d-4092-ba56-c62c68257e17}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\Extracteurs">
       <UniqueIdentifier>{8c769ae8-aa11-4ffb-a058-511cfd9f6ed7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Extracteurs">
-      <UniqueIdentifier>{ae0c135e-19f6-4dfc-8eb1-4178f7fd849d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,9 +56,6 @@
     </ClCompile>
     <ClCompile Include="src\AI_old.cpp">
       <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="ExtractorBuilder.cpp">
-      <Filter>Fichiers sources\Extracteurs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +116,6 @@
     <ClInclude Include="include\DecisionTree\ActionNode.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
-    <ClInclude Include="include\DecisionTree\DecisionNode.hpp">
-      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
-    </ClInclude>
     <ClInclude Include="include\DecisionTree\INode.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
@@ -161,7 +149,10 @@
     <ClInclude Include="include\IA\AI_old.hpp">
       <Filter>Fichiers d%27en-tête\IA</Filter>
     </ClInclude>
-    <ClInclude Include="NodeBuilder.hpp">
+    <ClInclude Include="include\DecisionTree\DecisionNode.hpp">
+      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DecisionTree\NodeBuilder.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
   </ItemGroup>

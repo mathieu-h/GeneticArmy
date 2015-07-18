@@ -8,7 +8,6 @@
 #include <sstream>
 
 #include "Actions/Action.hpp"
-#include "Actions/EmptyAction.hpp"
 #include "Army.hpp"
 
 class INode

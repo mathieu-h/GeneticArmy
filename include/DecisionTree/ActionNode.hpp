@@ -2,8 +2,8 @@
 #define _ACTIONNODE_H_
 
 #include <memory>
-
 #include "INode.hpp"
+#include "Actions/EmptyAction.hpp"
 
 class ActionNode : public INode
 {
