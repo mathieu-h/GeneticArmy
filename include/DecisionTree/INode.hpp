@@ -14,7 +14,7 @@ class INode
 {
 public:
 	std::stringstream code;
-    virtual std::unique_ptr<Action> getValue() = 0;
+	virtual std::unique_ptr<Action> getValue(const Unit& unit, const Army& allies, const Army& opponents) = 0;
 };
 
 #endif //_INODE_H_

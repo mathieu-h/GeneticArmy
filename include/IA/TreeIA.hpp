@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-#include "Action.hpp"
+#include "Actions/Action.hpp"
 #include "Army.hpp"
 
 class TreeIa

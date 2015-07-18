@@ -4,6 +4,9 @@
 #include "Actions/Action.hpp"
 #include "Unit.hpp"
 #include "Army.hpp"
+#include "DecisionTree/DecisionNode.hpp"
+#include "DecisionTree/ActionNode.hpp"
+
 //class representing an Artificial Intelligence
 class AI {
 public:
@@ -11,6 +14,8 @@ public:
     //Parenthesis overloading for applying the AI on the unit provided in parameter
     //Return the action which have to be done by the unit in this context
     std::unique_ptr<Action> operator()(Unit& unit, Army& allies, Army& opponents);
+	DecisionNode& generateDecisionTree(std::string code,const Unit& unit,const Army& allies,const Army& opponents);
+
 };
 
 

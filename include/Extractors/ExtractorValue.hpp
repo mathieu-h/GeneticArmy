@@ -9,7 +9,7 @@ private:
 public:
 	ExtractorDirect(float value): _value(value){};
 	~ExtractorDirect();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _value;
 	}
 };
@@ -23,7 +23,7 @@ private:
 public:
 	ExtractorC(int index, u_ptr<Extractor<Unit>>& eU) : _index(index), _eU(std::move(eU)){};
 	~ExtractorC();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eU->get(currentUnit, ally, opp).getCapacity(_index)->getValue();
 	}
 };
@@ -36,7 +36,7 @@ private:
 public:
 	ExtractorD(u_ptr<Extractor<Unit>>& eU, u_ptr<Extractor<Point>>& eP) :_eU(std::move(eU)), _eP(std::move(eP)){};
 	~ExtractorD();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eU->get(currentUnit, ally, opp).getPosition().distance(_eP->get(currentUnit, ally, opp));
 	}
 };
@@ -50,7 +50,7 @@ private:
 public:
 	ExtractorM(int index, u_ptr<Extractor<Army>>& eA) : _index(index), _eA(std::move(eA)){};
 	~ExtractorM();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eA->get(currentUnit, ally, opp).getHigestUnit(_index).getCapacity(_index)->getValue();
 	}
 };
@@ -63,7 +63,7 @@ private:
 public:
 	Extractorm(int index, u_ptr<Extractor<Army>>& eA) : _index(index), _eA(std::move(eA)){};
 	~Extractorm();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eA->get(currentUnit, ally, opp).getLowestUnit(_index).getCapacity(_index)->getValue();
 	}
 };
@@ -76,7 +76,7 @@ private:
 public:
 	Extractora(int index, u_ptr<Extractor<Army>>& eA) : _index(index), _eA(std::move(eA)){};
 	~Extractora();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		
 		int index = _index;
@@ -95,7 +95,7 @@ private:
 public:
 	ExtractorMD(u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorMD();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return _eA->get(currentUnit, ally, opp).getFurthestUnit(p).getPosition().distance(p);
 	}
@@ -109,7 +109,7 @@ private:
 public:
 	ExtractormD(u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractormD();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return _eA->get(currentUnit, ally, opp).getNearestUnit(p).getPosition().distance(p);
 	}
@@ -124,7 +124,7 @@ private:
 public:
 	ExtractoraD(int index, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _index(index), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractoraD();
-	float get(Unit& currentUnit, Army& ally, Army& opp){
+	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float sum = std::accumulate(vUnit.begin(), vUnit.end(),

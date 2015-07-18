@@ -16,6 +16,9 @@ std::unique_ptr<Action> AI::operator()(Unit& unit, Army& allies, Army& opponents
     try {
 		// Intégrer la logique de la nouvelle IA
 		//
+		std::string code = unit.getIACode();
+		//DecisionNode rootTree = generateDecisionTree(code, unit, allies, opponents);
+		//u_ptr<Action> action = rootTree.getValue();
 
 		return std::unique_ptr<Action>(new EmptyAction(unit));
     }
@@ -25,3 +28,10 @@ std::unique_ptr<Action> AI::operator()(Unit& unit, Army& allies, Army& opponents
         return std::unique_ptr<Action>(new EmptyAction(unit));
     }
 }
+
+//DecisionNode& generateDecisionTree(std::string& code, const Unit& unit, const Army& allies, const Army& opponents){
+//	//DecisionNode 
+//	//return ;
+//
+//
+//}

@@ -16,7 +16,7 @@ class Extractor
 {
 public:
 
-	virtual R get(Unit& currentUnit, Army& ally, Army& opp) = 0;
+	virtual R get(const Unit& currentUnit, const Army& ally, const Army& opp) = 0;
 
 };
 
