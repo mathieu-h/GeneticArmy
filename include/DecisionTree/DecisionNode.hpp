@@ -54,7 +54,7 @@ protected:
 		std::string point = "BP";
 		std::string unit = "ULH";
 		std::string value = "CDMma";
-		float value = 0;
+		float valueEx = 0.0f;
 		//if (army.find(firstchildcode[0]) != std::string::npos)
 		//	extractorbuilder::getinstance()->buildarmyextractor(firstchildss)->get();
 		//if (point.find(firstchildcode[0]) != std::string::npos)

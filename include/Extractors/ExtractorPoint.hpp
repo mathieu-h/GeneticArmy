@@ -12,9 +12,9 @@ public:
 	Point get(Unit currentUnit, Army ally, Army opp){
 		std::vector<u_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float sumY = std::accumulate(vUnit.begin(), vUnit.end(),
-			0, [](float a, const Unit* it){return a + it->getPosition().getY(); });
+			0, [](float a, u_ptr<Unit>& it){return a + it->getPosition().getY(); });
 		float sumX = std::accumulate(vUnit.begin(), vUnit.end(),
-			0, [/*&sumY*/](float a, const Unit* it){return a + it->getPosition().getX(); 
+			0, [/*&sumY*/](float a, u_ptr<Unit>& it){return a + it->getPosition().getX();
 					/*sumY += it->getPosition().getY();*/ });
 		return vUnit.size() == 0 ? Point(.0f,.0f) : Point(sumX / vUnit.size(), sumY / vUnit.size());
 	}

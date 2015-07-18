@@ -63,6 +63,9 @@
     <ClCompile Include="src\DecisionNode.cpp">
       <Filter>Fichiers sources\DecisionTree</Filter>
     </ClCompile>
+    <ClCompile Include="src\AI_old.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Army.hpp">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="include\Extractors\ExtractorValue.hpp">
       <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IA\AI_old.hpp">
+      <Filter>Fichiers d%27en-tête\IA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
