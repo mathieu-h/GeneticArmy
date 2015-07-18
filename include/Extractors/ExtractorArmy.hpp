@@ -6,7 +6,7 @@ class ExtractorA : public Extractor<Army>
 public:
 	ExtractorA();
 	~ExtractorA();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		return ally;
 	}
 };
@@ -16,7 +16,7 @@ class ExtractorO : public Extractor<Army>
 public:
 	ExtractorO();
 	~ExtractorO();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		return opp;
 	}
 };
@@ -36,7 +36,7 @@ public:
 		return unit->getCapacity(_index) < unit2->getCapacity(_index);
 	}*/
 
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		int index = _index;
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
@@ -56,7 +56,7 @@ private:
 public:
 	ExtractorNH(int index, u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA) : _index(index), _eV(std::move(eV)), _eA(std::move(eA)){};
 	~ExtractorNH();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		int index = _index;
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
@@ -77,7 +77,7 @@ private:
 public:
 	ExtractorNLD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorNLD();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
@@ -97,7 +97,7 @@ private:
 public:
 	ExtractorNHD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorNHD();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		float numU = _eV->get(currentUnit, ally, opp);
@@ -117,7 +117,7 @@ private:
 public:
 	ExtractorTL(u_ptr<Extractor<float>>& eV, int index, u_ptr<Extractor<Army>>& eA) : _eV(std::move(eV)), _index(index), _eA(std::move(eA)){};
 	~ExtractorTL();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		_eA->get(currentUnit, ally, opp).getUnitsList();
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.size());
@@ -137,7 +137,7 @@ private:
 public:
 	ExtractorTH(u_ptr<Extractor<float>>& eV, int index, u_ptr<Extractor<Army>>& eA) : _eV(std::move(eV)), _index(index), _eA(std::move(eA)){};
 	~ExtractorTH();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		_eA->get(currentUnit, ally, opp).getUnitsList();
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.size());
@@ -158,7 +158,7 @@ private:
 public:
 	ExtractorTLD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorTLD();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		_eA->get(currentUnit, ally, opp).getUnitsList();
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
@@ -179,7 +179,7 @@ private:
 public:
 	ExtractorTHD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorTHD();
-	Army get(Unit currentUnit, Army ally, Army opp){
+	Army get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		_eA->get(currentUnit, ally, opp).getUnitsList();
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
