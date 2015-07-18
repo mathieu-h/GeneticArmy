@@ -20,6 +20,7 @@
     <ClCompile Include="src\Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ActionNode.hpp" />
     <ClInclude Include="include\Actions\Action.hpp" />
     <ClInclude Include="include\Actions\EmptyAction.hpp" />
     <ClInclude Include="include\Actions\MoveAction.hpp" />
@@ -35,10 +36,8 @@
     <ClInclude Include="include\Capacity\RegenCapacity.hpp" />
     <ClInclude Include="include\Capacity\SpeedCapacity.hpp" />
     <ClInclude Include="include\configs.hpp" />
-    <ClInclude Include="include\DecisionTree\ActionNode.hpp" />
-    <ClInclude Include="include\DecisionTree\DecisionNode.hpp" />
+    <ClInclude Include="include\DecisionNode.hpp" />
     <ClInclude Include="include\DecisionTree\INode.hpp" />
-    <ClInclude Include="include\DecisionTree\NodeBuilder.hpp" />
     <ClInclude Include="include\Extractors\Extractor.hpp" />
     <ClInclude Include="include\Extractors\ExtractorArmy.hpp" />
     <ClInclude Include="include\Extractors\ExtractorBuilder.hpp" />
@@ -49,6 +48,7 @@
     <ClInclude Include="include\IA\AI.hpp" />
     <ClInclude Include="include\IA\AI_old.hpp" />
     <ClInclude Include="include\IA\TreeIA.hpp" />
+    <ClInclude Include="include\NodeBuilder.hpp" />
     <ClInclude Include="include\Point.hpp" />
     <ClInclude Include="include\training.hpp" />
     <ClInclude Include="include\Unit.hpp" />

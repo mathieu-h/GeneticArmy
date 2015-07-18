@@ -1,13 +1,11 @@
-#ifndef _NODEBUILDER_H_
-#define _NODEBUILDER_H_
-
+#pragma once
 #include <string>     
 #include <iostream> 
 #include <sstream>
-#include "Extractors/Extractor.hpp"
-#include "DecisionTree/INode.hpp"
-#include "DecisionTree/DecisionNode.hpp"
-#include "DecisionTree/ActionNode.hpp"
+#include "INode.hpp"
+#include "DecisionNode.hpp"
+#include "ActionNode.hpp"
+
 
 class NodeBuilder
 {
@@ -28,15 +26,7 @@ public:
 	}
 
 	u_ptr<INode> createNode(std::stringstream& code){
-		char c;
-		code >> c;
-		if (c == '!'){
-			return u_ptr<INode>(new ActionNode(code));
-		}
-		else if (c == '?'){
-			//return u_ptr<INode>(new DecisionNode(code));
-		}
+
 		//return 
 	}
 };
-#endif

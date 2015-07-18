@@ -4,9 +4,8 @@
 #include <functional>
 
 #include "INode.hpp"
-#include "Extractors/Extractor.hpp"
 #include "Extractors/ExtractorBuilder.hpp"
-#include "NodeBuilder.hpp"
+#include "ActionNode.hpp"
 #include "Army.hpp"
 #include "boost/algorithm/string.hpp"
 #include <boost/algorithm/string/predicate.hpp>
@@ -20,10 +19,23 @@ public:
 		_extractorLeft = ExtractorBuilder::getInstance().buildValueExtractor(code);
 		code >> _comparator;
 		_extractorRight = ExtractorBuilder::getInstance().buildValueExtractor(code);
-		_nLeft = NodeBuilder::getInstance().getInstance().createNode(code);
-		_nRight = NodeBuilder::getInstance().getInstance().createNode(code);
+		char c;
+		code >> c;
+		if (c == '!'){
+			_nLeft = u_ptr<INode>(new ActionNode(code));
+		}
+		else if (c == '?'){
+			_nLeft = u_ptr<INode>(new DecisionNode(code));
+		}
+		code >> c;
+		if (c == '!'){
+			_nRight = u_ptr<INode>(new ActionNode(code));
+		}
+		else if (c == '?'){
+			_nRight = u_ptr<INode>(new DecisionNode(code));
+		}
 	}
-	~DecisionNode();
+	~DecisionNode(){};
 	
 	u_ptr<Action> getValue(Unit& unit, Army& allies, Army& opponents){
 		// Assuming comparator will always be '<' => rule to be defined in the IACode generator

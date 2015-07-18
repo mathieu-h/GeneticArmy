@@ -113,9 +113,6 @@
     <ClInclude Include="include\Capacity\SpeedCapacity.hpp">
       <Filter>Fichiers d%27en-tête\Capacity</Filter>
     </ClInclude>
-    <ClInclude Include="include\DecisionTree\ActionNode.hpp">
-      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
-    </ClInclude>
     <ClInclude Include="include\DecisionTree\INode.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
@@ -149,10 +146,13 @@
     <ClInclude Include="include\IA\AI_old.hpp">
       <Filter>Fichiers d%27en-tête\IA</Filter>
     </ClInclude>
-    <ClInclude Include="include\DecisionTree\DecisionNode.hpp">
+    <ClInclude Include="include\ActionNode.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
-    <ClInclude Include="include\DecisionTree\NodeBuilder.hpp">
+    <ClInclude Include="include\NodeBuilder.hpp">
+      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DecisionNode.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
   </ItemGroup>

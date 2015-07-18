@@ -6,8 +6,8 @@
 
 #include "Actions/Action.hpp"
 #include "Army.hpp"
-#include "DecisionTree/DecisionNode.hpp"
-#include "DecisionTree/ActionNode.hpp"
+#include "DecisionNode.hpp"
+#include "ActionNode.hpp"
 class TreeIA
 {
 public:
@@ -15,7 +15,7 @@ public:
      * Compute a decision tree with codeIa passed in constructor
      */
 	TreeIA(std::stringstream& codeIA){
-		treeRoot = NodeBuilder::getInstance().createNode(codeIA);
+		treeRoot = u_ptr<DecisionNode>(new DecisionNode(codeIA));
 	}
 
     /**
@@ -25,7 +25,7 @@ public:
 		return treeRoot->getValue(unit, allies, opponents);
 	}
 private:
-	u_ptr<INode> treeRoot;
+	u_ptr<DecisionNode> treeRoot;
 };
 
 /*
