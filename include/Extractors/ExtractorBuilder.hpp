@@ -1,3 +1,5 @@
+#ifndef _EXTRACTORBUILDER_H_
+#define _EXTRACTORBUILDER_H_
 #pragma once
 #include <string>     
 #include <iostream> 
@@ -11,18 +13,20 @@
 class ExtractorBuilder
 {
 	private:
-		static ExtractorBuilder* instance;
-		ExtractorBuilder();
-		~ExtractorBuilder();
+		//static ExtractorBuilder* instance;		
+		//ExtractorBuilder(ExtractorBuilder const&); // Don't Implement.
+		//void operator=(ExtractorBuilder const&); // Don't implement
+		ExtractorBuilder(){};
+		~ExtractorBuilder(){};
 
 	public:
-		static ExtractorBuilder* getInstance(){
-			if (instance == nullptr){
-				instance = new ExtractorBuilder();
-			}
+		static ExtractorBuilder& getInstance(){
+			//if (instance == nullptr){
+			//	instance = new ExtractorBuilder();
+			//}
+			static ExtractorBuilder instance;
 			return instance;
 		}
-
 
 		u_ptr<Extractor<Army>> buildArmyExtractor(std::stringstream& code){
 			char c;
@@ -215,6 +219,9 @@ class ExtractorBuilder
 						return exa;
 					}
 				}
+				default:
+					return nullptr;
 			}
 		}
 };
+#endif //_EXTRACTORBUILDER_H_

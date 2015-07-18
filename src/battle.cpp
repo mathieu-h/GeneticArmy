@@ -1,6 +1,7 @@
 #include "battle.hpp"
 #include "Army.hpp"
 #include "IA/AI.hpp"
+#include "IA/AI_old.hpp"
 
 #include <vector>
 #include <algorithm>
@@ -28,7 +29,9 @@ void fight(const Army& a, const Army& b, int& scoreA, int& scoreB, bool log)
 
     Army A = a;
     Army B = b;
-    AI ai;
+
+    //TODO Changer AI_old en AI
+	AI_old ai;
     int turn = 1;
     while(A.size()>0 && B.size()>0 && turn++ < 10000) {
 

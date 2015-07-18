@@ -5,12 +5,16 @@
 
 #include "INode.hpp"
 
-class ActionNode : INode
+class ActionNode : public INode
 {
 public:
-    ActionNode();
+	ActionNode(std::stringstream& code){
+		
+	}
 
-    std::unique_ptr<Action> getValue();
+	u_ptr<Action> getValue(Unit& unit, Army& allies, Army& opponents){
+		return u_ptr<Action>(new EmptyAction(unit));
+	}
 };
 
 #endif //_ACTIONNODE_H_

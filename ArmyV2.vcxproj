@@ -11,12 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ActionNode.cpp" />
+    <ClCompile Include="ExtractorBuilder.cpp" />
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AI_old.cpp" />
     <ClCompile Include="src\Army.cpp" />
     <ClCompile Include="src\battle.cpp" />
-    <ClCompile Include="src\DecisionNode.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\training.cpp" />
     <ClCompile Include="src\Unit.cpp" />
@@ -53,6 +52,7 @@
     <ClInclude Include="include\Point.hpp" />
     <ClInclude Include="include\training.hpp" />
     <ClInclude Include="include\Unit.hpp" />
+    <ClInclude Include="NodeBuilder.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3D6BC7BA-FF56-405F-BE8A-496F6FE486F1}</ProjectGuid>

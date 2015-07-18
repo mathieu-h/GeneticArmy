@@ -1,10 +1,13 @@
+#ifndef _EXTRACTORARMY_H_
+#define _EXTRACTORARMY_H_
 #pragma once
 #include "Extractor.hpp"
 
 class ExtractorA : public Extractor<Army>
 {
+private:
 public:
-	ExtractorA();
+	ExtractorA(){};
 	~ExtractorA();
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return ally;
@@ -13,8 +16,9 @@ public:
 
 class ExtractorO : public Extractor<Army>
 {
+private:
 public:
-	ExtractorO();
+	ExtractorO(){};
 	~ExtractorO();
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return opp;
@@ -39,7 +43,7 @@ public:
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		int index = _index;
 		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
-		float numU = _eV->get(currentUnit, ally, opp);
+		int numU = _eV->get(currentUnit, ally, opp);
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
 			[&index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) < b->getCapacity(index); });
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
@@ -190,3 +194,5 @@ public:
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
 	}
 };
+
+#endif //_EXTRACTORARMY_H_

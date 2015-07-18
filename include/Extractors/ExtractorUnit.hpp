@@ -1,11 +1,14 @@
+#ifndef _EXTRACTORUNIT_H_
+#define _EXTRACTORUNIT_H_
 #pragma once
 #include "Extractor.hpp"
 
 
 class ExtractorU : public Extractor<Unit>
 {
+private:
 public:
-	ExtractorU();
+	ExtractorU(){};
 	~ExtractorU();
 	Unit get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return currentUnit;
@@ -67,3 +70,4 @@ public:
 		return _eA->get(currentUnit, ally, opp).getFurthestUnit(p);
 	}
 };
+#endif //_EXTRACTORUNIT_H_

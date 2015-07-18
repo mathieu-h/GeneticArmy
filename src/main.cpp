@@ -19,7 +19,7 @@ int main(void)
 {
     std::srand(static_cast<unsigned int>(time(nullptr)));
 
-	// TEST FOR SPLIT
+	 //TEST FOR SPLIT
 	//std::cout << "toto" << std::endl;
 	//std::stringstream code;
 	//code << "?C1<C3!EB?C2>C4!EB!AN1";
@@ -28,11 +28,18 @@ int main(void)
 	//boost::split(strs, strFull, boost::is_any_of("?!<>"));
 	//std::string firstChildCode = strs.at(1);
 	//std::string secondChildCode = strs.at(2);
+	//std::string thirdChildCode = strs.at(3);
+	//std::string fourthChildCode = strs.at(4);
+	//std::string fourthChildCode = strs.at(4);
+
+	//char comp = strFull[firstChildCode.size() + 1];
 
 	//std::cout << strFull << std::endl;
-	////std::cout << strFull << std::endl;
+	//std::cout << comp << std::endl;
 	//std::cout << firstChildCode << std::endl;
 	//std::cout << secondChildCode << std::endl;
+	//std::cout << thirdChildCode << std::endl;
+	//std::cout << fourthChildCode << std::endl;
 
     std::vector<std::unique_ptr<Army> > champions;
     try

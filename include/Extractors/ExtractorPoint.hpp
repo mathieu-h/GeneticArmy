@@ -1,3 +1,5 @@
+#ifndef _EXTRACTORPOINT_H_
+#define _EXTRACTORPOINT_H_
 #pragma once
 #include "Extractor.hpp"
 
@@ -31,3 +33,4 @@ public:
 		return _eU->get(currentUnit, ally, opp).getPosition();
 	}
 };
+#endif //_EXTRACTORPOINT_H_

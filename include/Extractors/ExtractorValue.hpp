@@ -1,3 +1,5 @@
+#ifndef _EXTRACTORVALUE_H_
+#define _EXTRACTORVALUE_H_
 #pragma once
 #include "Extractor.hpp"
 
@@ -132,4 +134,4 @@ public:
 		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
 	}
 };
-
+#endif // _EXTRACTORVALUE_H_

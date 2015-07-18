@@ -8,13 +8,13 @@
 #include <sstream>
 
 #include "Actions/Action.hpp"
+#include "Actions/EmptyAction.hpp"
 #include "Army.hpp"
 
 class INode
 {
 public:
-	std::stringstream code;
-	virtual std::unique_ptr<Action> getValue(const Unit& unit, const Army& allies, const Army& opponents) = 0;
+	virtual std::unique_ptr<Action> getValue(Unit& unit, Army& allies, Army& opponents) = 0;
 };
 
 #endif //_INODE_H_

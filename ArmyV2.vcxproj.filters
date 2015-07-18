@@ -37,6 +37,9 @@
     <Filter Include="Fichiers d%27en-tête\Extracteurs">
       <UniqueIdentifier>{8c769ae8-aa11-4ffb-a058-511cfd9f6ed7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Extracteurs">
+      <UniqueIdentifier>{ae0c135e-19f6-4dfc-8eb1-4178f7fd849d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AI.cpp">
@@ -57,14 +60,11 @@
     <ClCompile Include="src\Unit.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\ActionNode.cpp">
-      <Filter>Fichiers sources\DecisionTree</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DecisionNode.cpp">
-      <Filter>Fichiers sources\DecisionTree</Filter>
-    </ClCompile>
     <ClCompile Include="src\AI_old.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtractorBuilder.cpp">
+      <Filter>Fichiers sources\Extracteurs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="include\IA\AI_old.hpp">
       <Filter>Fichiers d%27en-tête\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeBuilder.hpp">
+      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
