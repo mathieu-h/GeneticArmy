@@ -15,7 +15,7 @@ private:
 	//void operator=(ExtractorBuilder const&); // Don't implement
 	IACodeGenerator(){};
 	~IACodeGenerator(){};
-	int _maxTreeLength = 10;
+	int _maxTreeLength = 3;
 	int _sizecounter;
 
 public:
@@ -28,7 +28,7 @@ public:
 	}
 	void setMaxTreeLength(int maxLength){ _maxTreeLength = maxLength; };
 	
-	std::string& GenerateIACode(){
+	std::string GenerateIACode(){
 
 		std::string newIACode;
 		_sizecounter = _maxTreeLength;
@@ -47,7 +47,7 @@ public:
 		return float((rand() % 100) + (rand() % (1600 - 1200)) / 10.0);
 	}
 
-	std::string& GenerateIACodeDecisionNode(){
+	std::string GenerateIACodeDecisionNode(){
 		if (_sizecounter == 0) return GenerateIACodeActionNode();
 		_sizecounter-=1;
 		std::string firstChild;
@@ -69,7 +69,7 @@ public:
 		return "?" + GenerateIACodeValueExtractor() + "<" + GenerateIACodeValueExtractor() + firstChild + secondChild ;
 	}
 
-	std::string& GenerateIACodeActionNode(){
+	std::string GenerateIACodeActionNode(){
 		std::vector<std::string> arr = { "M", "E", "A", "N"};
 		std::stringstream actionNodeCode("");
 		int dice = rand() % arr.size();
@@ -78,17 +78,28 @@ public:
 		switch (dice){
 		case 0:
 		case 1:
-			actionNodeCode << arr[dice] << GenerateIACodePointExtractor();
+		{
+			std::string pointCode = GenerateIACodeArmyExtractor();
+			actionNodeCode << arr[dice] << pointCode;
 			break;
+		}
 		case 2:
-			actionNodeCode << arr[dice] << GenerateIACodeUnitExtractor();
+		{
+			std::string pointCode = GenerateIACodeArmyExtractor();
+			actionNodeCode << arr[dice] << pointCode;
 			break;
+		}
 		case 3:
-			actionNodeCode << arr[dice];
+		{
+			std::string armyCode = GenerateIACodeArmyExtractor();
+			actionNodeCode << arr[dice] << armyCode;
 			break;
+		}
 		case 4:
+		{
 			actionNodeCode << arr[dice];
 			break;
+		}
 		default:
 			break;
 		}
@@ -96,36 +107,43 @@ public:
 		return actionNodeCode.str();
 	}
 		
-	std::string& GenerateIACodeArmyExtractor(){
+	std::string GenerateIACodeArmyExtractor(){
 		std::vector<std::string> arr = { "A", "O", "NL", "NH", "TL", "TH", "NLD", "NHD", "TLD", "THD"};
 		std::stringstream armyCode("");
+		//int dice = rand() % arr.size()-6;
 		int dice = rand() % arr.size();
 
 		switch (dice){
 		case 0:
 		case 1:
-			armyCode << arr[dice];
+			armyCode << std::string(arr[dice]);
+			//armyCode << "tamer";
 			break;
 		case 2:
 		case 3:
 		case 4:
 		case 5:
-			armyCode << arr[dice] << GenerateIACodeRandomIndex() << "[" << GenerateIACodeRandomValue() << "]" << GenerateIACodeArmyExtractor();
+		{
+			std::string armyCodeR = GenerateIACodeArmyExtractor();
+			armyCode << arr[dice] << GenerateIACodeRandomIndex() << "[" << GenerateIACodeRandomValue() << "]" << armyCodeR;
 			break;
+		}
 		case 6:
 		case 7:
 		case 8:
 		case 9:
-			armyCode << arr[dice] << "[" << GenerateIACodeRandomValue() << "]" << GenerateIACodeArmyExtractor();
+		{
+			std::string armyCodeR = GenerateIACodeArmyExtractor();
+			armyCode << arr[dice] << "[" << GenerateIACodeRandomValue() << "]" << armyCodeR;
 			break;
+		}
 		default:
 			break;
 		}
-		std::string codeString(armyCode.str());
-		return codeString;
+		return armyCode.str();
 	}
 
-	std::string& GenerateIACodeUnitExtractor(){
+	std::string GenerateIACodeUnitExtractor(){
 		std::vector<std::string> arr = { "U", "H", "L", "HD", "LD" };
 		std::stringstream unitCode("");
 		int dice = rand() % arr.size();
@@ -136,42 +154,56 @@ public:
 			break;
 		case 1:
 		case 2:
+		{
+			std::string armyCode = GenerateIACodeArmyExtractor();
 			unitCode << arr[dice] << GenerateIACodeRandomIndex() << GenerateIACodeArmyExtractor();
 			break;
+		}
 		case 3:
 		case 4:
-			unitCode << arr[dice] << GenerateIACodeArmyExtractor() << GenerateIACodePointExtractor();
+		{
+			std::string pointCode = GenerateIACodePointExtractor();
+			unitCode << arr[dice] << GenerateIACodeArmyExtractor() << pointCode;
 			break;
+		}
 		default:
 			break;
 		}
-		std::string codeString(unitCode.str());
-		return codeString;
+		return unitCode.str();
 	}
 
-	std::string& GenerateIACodeValueExtractor(){
+	std::string GenerateIACodeValueExtractor(){
 		std::vector<std::string> arr = { "[val]", "C", "D", "M", "m", "a", "MD", "mD", "aD" };
 		std::stringstream valueCode("");
 		int dice = rand() % arr.size();
 
 		switch (dice){
 		case 0:
+		{
 			// Generates random value between 0 and 99 with one decimal
 			valueCode << "[" << GenerateIACodeRandomValue() << "]" << GenerateIACodeUnitExtractor();
 			break;
+		}
 		case 1:
-			valueCode << arr[dice] << GenerateIACodeRandomIndex() << GenerateIACodeUnitExtractor();
+		{
+			std::string unitCode = GenerateIACodeUnitExtractor();
+			valueCode << arr[dice] << GenerateIACodeRandomIndex() << unitCode;
 			break;
+		}
 		case 2:
-			valueCode << arr[dice] << GenerateIACodeUnitExtractor() << GenerateIACodePointExtractor();
+		{
+			std::string unitCode = GenerateIACodeUnitExtractor();
+			std::string pointCode = GenerateIACodePointExtractor();
+			valueCode << arr[dice] << unitCode << pointCode;
 			break;
+		}
 		case 3:
 		case 4:
 		case 5:
 		{
-			  std::string armyCode = GenerateIACodeArmyExtractor();
-			  valueCode << arr[dice] << GenerateIACodeRandomIndex() << armyCode;
-			  break;
+			std::string armyCode = GenerateIACodeArmyExtractor();
+			valueCode << arr[dice] << GenerateIACodeRandomIndex() << armyCode;
+			break;
 		}
 		case 6: 
 		case 7:
@@ -190,7 +222,7 @@ public:
 		//return valueCode.str();
 	}
 
-	std::string& GenerateIACodePointExtractor(){
+	std::string GenerateIACodePointExtractor(){
 		std::string pointCodes("PB");
 		std::string pointCode("");
 		int dice = rand() % pointCodes.size();

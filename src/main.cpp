@@ -42,9 +42,12 @@ int main(void)
 	//std::cout << secondChildCode << std::endl;
 	//std::cout << thirdChildCode << std::endl;
 	//std::cout << fourthChildCode << std::endl;
+
+	//****************************** TEST DE GENERATION DE CODE *****************************************
 	std::string iacodegen = IACodeGenerator::getInstance().GenerateIACode();
 	std::cout << iacodegen << std::endl;
 
+	//*************************** TEST DE GENERATION D'ARBRE A PARTIR DU CODE ***************************
 	std::string codeTest("?C1LDOPU<C4U!ALDOPU?aDOPU<a5O!EBO!N");
 	std::stringstream codeSS;
 	//char c;
