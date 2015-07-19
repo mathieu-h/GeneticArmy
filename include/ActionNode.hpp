@@ -4,6 +4,8 @@
 #include <memory>
 #include "INode.hpp"
 #include "Actions/EmptyAction.hpp"
+#include "Actions/ShotAction.hpp"
+#include "Actions/MoveAction.hpp"
 #include "Extractors/ExtractorBuilder.hpp"
 
 class ActionNode : public INode
@@ -11,6 +13,7 @@ class ActionNode : public INode
 public:
 	ActionNode(std::stringstream& code){
 		code >> actionType;
+		// On créé l'extracteur ici afin de 'consommer' le code
 		if (actionType == 'M'){
 			extractorPoint = ExtractorBuilder::getInstance().buildPointExtractor(code);
 		}

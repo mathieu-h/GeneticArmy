@@ -15,6 +15,8 @@ public:
      * Compute a decision tree with codeIa passed in constructor
      */
 	TreeIA(std::stringstream& codeIA){
+		char c;
+		codeIA >> c;
 		treeRoot = u_ptr<DecisionNode>(new DecisionNode(codeIA));
 	}
 

@@ -9,6 +9,7 @@
 
 #include "Filters/IFilters.hpp"
 #include "boost/algorithm/string.hpp"
+#include "IA/TreeIA.hpp"
 
 void unitTest()
 {
@@ -40,6 +41,22 @@ int main(void)
 	//std::cout << secondChildCode << std::endl;
 	//std::cout << thirdChildCode << std::endl;
 	//std::cout << fourthChildCode << std::endl;
+
+	std::string codeTest("?C1LDOPU<C4U!ALDOPU?aDOPU<a5O!EBO!N");
+	std::stringstream codeSS;
+	//char c;
+	codeSS << codeTest;
+	//codeSS >> c;
+
+	//char c2;
+	//codeSS >> c2;
+
+	//std::cout << c << std::endl;
+	//std::cout << codeTest << std::endl;
+	//std::cout << c2 << std::endl;
+	//std::cout << codeSS.str() << std::endl;
+
+	TreeIA tree = TreeIA(codeSS);
 
     std::vector<std::unique_ptr<Army> > champions;
     try

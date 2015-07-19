@@ -45,7 +45,7 @@ public:
 private:
 	u_ptr <Extractor<float>> _extractorLeft;
 	u_ptr <Extractor<float>> _extractorRight;
-	std::string _comparator;
+	char _comparator;
 	u_ptr<INode> _nLeft;
 	u_ptr<INode> _nRight;
 };

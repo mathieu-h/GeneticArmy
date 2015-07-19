@@ -49,26 +49,34 @@ class ExtractorBuilder
 						code >> c;
 						if (c == 'D'){
 							code >> c;
-							// TODO s'assurer qu'ici le code qu'on passe a buildPointExtractor a bien été 'consommé' par buildArmyExtractor avant
-							u_ptr<Extractor<Army>> exNLD(new ExtractorNLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+							u_ptr<Extractor<Army>> exNLD(new ExtractorNLD(eV, eA, eP));
 							return exNLD;
 						}
 						else{
 							code >> c;
-							u_ptr<Extractor<Army>> exNL(new ExtractorNL((int)c, buildValueExtractor(code), buildArmyExtractor(code)));
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Army>> exNL(new ExtractorNL((int)c, eV, eA));
 							return exNL;
 						}
 					}
 					else{
 						if (c == 'D'){
 							code >> c;
-							// TODO s'assurer qu'ici le code qu'on passe a buildPointExtractor a bien été 'consommé' par buildArmyExtractor avant
-							u_ptr<Extractor<Army>> exNHD(new ExtractorNLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+							u_ptr<Extractor<Army>> exNHD(new ExtractorNLD(eV, eA, eP));
 							return exNHD;
 						}
 						else{
 							code >> c;
-							u_ptr<Extractor<Army>> exNH(new ExtractorNL((int)c, buildValueExtractor(code), buildArmyExtractor(code)));
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Army>> exNH(new ExtractorNL((int)c, eV, eA));
 							return exNH;
 						}
 					}
@@ -81,25 +89,33 @@ class ExtractorBuilder
 						code >> c;
 						if (c == 'D'){
 							code >> c;
-							// TODO s'assurer qu'ici le code qu'on passe a buildPointExtractor a bien été 'consommé' par buildArmyExtractor avant
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
 							u_ptr<Extractor<Army>> exTLD(new ExtractorNLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
 							return exTLD;
 						}
 						else{
-							code >> c;
-							u_ptr<Extractor<Army>> exTL(new ExtractorNL((int)c, buildValueExtractor(code), buildArmyExtractor(code)));
+							code >> c;							
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Army>> exTL(new ExtractorNL((int)c, eV, eA));
 							return exTL;
 						}
 					}
 					else{
 						if (c == 'D'){
 							code >> c;
-							// TODO s'assurer qu'ici le code qu'on passe a buildPointExtractor a bien été 'consommé' par buildArmyExtractor avant
-							u_ptr<Extractor<Army>> exTHD(new ExtractorNLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+							u_ptr<Extractor<Army>> exTHD(new ExtractorNLD(eV, eA, eP));
 							return exTHD;
 						}
 						else{
 							code >> c;
+							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
+							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Army>> exTH(new ExtractorNL((int)c, buildValueExtractor(code), buildArmyExtractor(code)));
 							return exTH;
 						}
@@ -116,12 +132,14 @@ class ExtractorBuilder
 			switch (c){
 				case 'B':
 				{
-					u_ptr<Extractor<Point>> exB(new ExtractorB(buildArmyExtractor(code)));
+					u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+					u_ptr<Extractor<Point>> exB(new ExtractorB(eA));
 					return exB;
 				}
 				case 'P':
 				{
-					u_ptr<Extractor<Point>> exP(new ExtractorP(buildUnitExtractor(code)));
+					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
+					u_ptr<Extractor<Point>> exP(new ExtractorP(eU));
 					return exP;
 				}
 				default:
@@ -142,11 +160,14 @@ class ExtractorBuilder
 				{
 					code >> c;
 					if (c == 'D'){
-						u_ptr<Extractor<Unit>> exL(new ExtractorLD(buildArmyExtractor(code), buildPointExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+						u_ptr<Extractor<Unit>> exL(new ExtractorLD(eA, eP));
 						return exL;
 					}
 					else{
-						u_ptr<Extractor<Unit>> exL(new ExtractorL((int)c, buildArmyExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Unit>> exL(new ExtractorL((int)c, eA));
 						return exL;
 					}
 				}
@@ -154,11 +175,14 @@ class ExtractorBuilder
 				{
 					code >> c;
 					if (c == 'D'){
-						u_ptr<Extractor<Unit>> exH(new ExtractorHD(buildArmyExtractor(code), buildPointExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+						u_ptr<Extractor<Unit>> exH(new ExtractorHD(eA, eP));
 						return exH;
 					}
 					else{
-						u_ptr<Extractor<Unit>> exH(new ExtractorH((int)c, buildArmyExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Unit>> exH(new ExtractorH((int)c, eA));
 						return exH;
 					}
 				}
@@ -175,23 +199,29 @@ class ExtractorBuilder
 				case 'C':
 				{
 					code >> c;
-					u_ptr<Extractor<float>> exC(new ExtractorC((int)c, buildUnitExtractor(code)));
+					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
+					u_ptr<Extractor<float>> exC(new ExtractorC((int)c, eU));
 					return exC;
 				}				
 				case 'D':
 				{
-					u_ptr<Extractor<float>> exD(new ExtractorD(buildUnitExtractor(code), buildPointExtractor(code)));
+					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
+					u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+					u_ptr<Extractor<float>> exD(new ExtractorD(eU, eP));
 					return exD;
 				}				
 				case 'M':
 				{
 					code >> c;
 					if (c == 'D'){
-						u_ptr<Extractor<float>> exMD(new ExtractorMD(buildArmyExtractor(code), buildPointExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+						u_ptr<Extractor<float>> exMD(new ExtractorMD(eA, eP));
 						return exMD;
 					}
 					else{
-						u_ptr<Extractor<float>> exM(new ExtractorM((int)c, buildArmyExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<float>> exM(new ExtractorM((int)c, eA));
 						return exM;
 					}
 				}
@@ -199,11 +229,14 @@ class ExtractorBuilder
 				{
 					code >> c;
 					if (c == 'D'){
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
 						u_ptr<Extractor<float>> exmD(new ExtractormD(buildArmyExtractor(code), buildPointExtractor(code)));
 						return exmD;
 					}
 					else{
-						u_ptr<Extractor<float>> exm(new Extractorm((int)c, buildArmyExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<float>> exm(new Extractorm((int)c, eA));
 						return exm;
 					}
 				}
@@ -211,11 +244,14 @@ class ExtractorBuilder
 				{
 					code >> c;
 					if (c == 'D'){
-						u_ptr<Extractor<float>> exaD(new ExtractormD(buildArmyExtractor(code), buildPointExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
+						u_ptr<Extractor<float>> exaD(new ExtractoraD(eA, eP));
 						return exaD;
 					}
 					else{
-						u_ptr<Extractor<float>> exa(new Extractorm((int)c, buildArmyExtractor(code)));
+						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
+						u_ptr<Extractor<float>> exa(new Extractora((int)c, eA));
 						return exa;
 					}
 				}

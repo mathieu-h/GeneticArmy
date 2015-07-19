@@ -120,11 +120,10 @@ public:
 class ExtractoraD : public Extractor<float>
 {
 private:
-	int _index;
 	u_ptr<Extractor<Army>> _eA;
 	u_ptr<Extractor<Point>> _eP;
 public:
-	ExtractoraD(int index, u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _index(index), _eA(std::move(eA)), _eP(std::move(eP)){};
+	ExtractoraD(u_ptr<Extractor<Army>>& eA, u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractoraD();
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
