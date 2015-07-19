@@ -9,6 +9,7 @@
 #include "ExtractorUnit.hpp"
 #include "ExtractorPoint.hpp"
 #include "ExtractorValue.hpp"
+#define toDigit(c) (c-'0')
 
 class ExtractorBuilder
 {
@@ -59,7 +60,7 @@ class ExtractorBuilder
 							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exNL(new ExtractorNL((int)c, eV, eA));
+							u_ptr<Extractor<Army>> exNL(new ExtractorNL(toDigit(c), eV, eA));
 							return exNL;
 						}
 					}
@@ -76,7 +77,7 @@ class ExtractorBuilder
 							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exNH(new ExtractorNL((int)c, eV, eA));
+							u_ptr<Extractor<Army>> exNH(new ExtractorNL(toDigit(c), eV, eA));
 							return exNH;
 						}
 					}
@@ -99,7 +100,7 @@ class ExtractorBuilder
 							code >> c;							
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exTL(new ExtractorNL((int)c, eV, eA));
+							u_ptr<Extractor<Army>> exTL(new ExtractorNL(toDigit(c), eV, eA));
 							return exTL;
 						}
 					}
@@ -116,7 +117,7 @@ class ExtractorBuilder
 							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exTH(new ExtractorNL((int)c, buildValueExtractor(code), buildArmyExtractor(code)));
+							u_ptr<Extractor<Army>> exTH(new ExtractorNL(toDigit(c), buildValueExtractor(code), buildArmyExtractor(code)));
 							return exTH;
 						}
 					}
@@ -167,7 +168,7 @@ class ExtractorBuilder
 					}
 					else{
 						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<Unit>> exL(new ExtractorL((int)c, eA));
+						u_ptr<Extractor<Unit>> exL(new ExtractorL(toDigit(c), eA));
 						return exL;
 					}
 				}
@@ -182,7 +183,7 @@ class ExtractorBuilder
 					}
 					else{
 						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<Unit>> exH(new ExtractorH((int)c, eA));
+						u_ptr<Extractor<Unit>> exH(new ExtractorH(toDigit(c), eA));
 						return exH;
 					}
 				}
@@ -196,11 +197,19 @@ class ExtractorBuilder
 			code >> c;
 			switch (c){
 				// TODO direct value extractor, case avec un chiffre en premier caractère
+				case '[':
+				{
+					float val;
+					code >> val;
+					// On consomme le ']'
+					code >> c;
+					u_ptr<Extractor<float>> exDirect(new ExtractorDirect(val));
+				}
 				case 'C':
 				{
 					code >> c;
 					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
-					u_ptr<Extractor<float>> exC(new ExtractorC((int)c, eU));
+					u_ptr<Extractor<float>> exC(new ExtractorC(toDigit(c), eU));
 					return exC;
 				}				
 				case 'D':
@@ -221,7 +230,7 @@ class ExtractorBuilder
 					}
 					else{
 						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<float>> exM(new ExtractorM((int)c, eA));
+						u_ptr<Extractor<float>> exM(new ExtractorM(toDigit(c), eA));
 						return exM;
 					}
 				}
@@ -236,7 +245,7 @@ class ExtractorBuilder
 					}
 					else{
 						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<float>> exm(new Extractorm((int)c, eA));
+						u_ptr<Extractor<float>> exm(new Extractorm(toDigit(c), eA));
 						return exm;
 					}
 				}
@@ -251,7 +260,7 @@ class ExtractorBuilder
 					}
 					else{
 						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<float>> exa(new Extractora((int)c, eA));
+						u_ptr<Extractor<float>> exa(new Extractora(toDigit(c), eA));
 						return exa;
 					}
 				}

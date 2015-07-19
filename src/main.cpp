@@ -10,6 +10,7 @@
 #include "Filters/IFilters.hpp"
 #include "boost/algorithm/string.hpp"
 #include "IA/TreeIA.hpp"
+#include "IA/IACodeGenerator.hpp"
 
 void unitTest()
 {
@@ -41,6 +42,8 @@ int main(void)
 	//std::cout << secondChildCode << std::endl;
 	//std::cout << thirdChildCode << std::endl;
 	//std::cout << fourthChildCode << std::endl;
+	std::string iacodegen = IACodeGenerator::getInstance().GenerateIACode();
+	std::cout << iacodegen << std::endl;
 
 	std::string codeTest("?C1LDOPU<C4U!ALDOPU?aDOPU<a5O!EBO!N");
 	std::stringstream codeSS;
@@ -57,6 +60,7 @@ int main(void)
 	//std::cout << codeSS.str() << std::endl;
 
 	TreeIA tree = TreeIA(codeSS);
+	//std::cout << float((rand() % 99)+(rand() % (1600 - 1200)) / 10.0) << std::endl;
 
     std::vector<std::unique_ptr<Army> > champions;
     try

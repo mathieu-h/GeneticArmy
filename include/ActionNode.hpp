@@ -30,7 +30,8 @@ public:
 			return u_ptr<Action>(new MoveAction(unit, extractorPoint->get(unit, allies, opponents)));
 		}
 		else if (actionType == 'E'){
-			return u_ptr<Action>(new MoveAction(unit, extractorPoint->get(unit, allies, opponents)));
+			Point p = (2 * unit.getPosition()) - extractorPoint->get(unit, allies, opponents);
+			return u_ptr<Action>(new MoveAction(unit, 1000 * p));
 		}
 		else if (actionType == 'A'){
 			if (unit.getFirerate().canShoot()){

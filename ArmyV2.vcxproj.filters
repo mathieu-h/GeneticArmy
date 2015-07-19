@@ -155,5 +155,8 @@
     <ClInclude Include="include\DecisionNode.hpp">
       <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
+    <ClInclude Include="include\IA\IACodeGenerator.hpp">
+      <Filter>Fichiers d%27en-tête\IA</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

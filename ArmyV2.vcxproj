@@ -47,6 +47,7 @@
     <ClInclude Include="include\Filters\IFilters.hpp" />
     <ClInclude Include="include\IA\AI.hpp" />
     <ClInclude Include="include\IA\AI_old.hpp" />
+    <ClInclude Include="include\IA\IACodeGenerator.hpp" />
     <ClInclude Include="include\IA\TreeIA.hpp" />
     <ClInclude Include="include\NodeBuilder.hpp" />
     <ClInclude Include="include\Point.hpp" />

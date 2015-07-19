@@ -3,13 +3,12 @@
 #pragma once
 #include "Extractor.hpp"
 
-
 class ExtractorDirect : public Extractor<float>
 {
 private:
-	float _value;
+	int _value;
 public:
-	ExtractorDirect(float value): _value(value){};
+	ExtractorDirect(int value): _value(value){};
 	~ExtractorDirect();
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _value;
