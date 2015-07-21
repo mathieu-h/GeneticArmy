@@ -44,13 +44,15 @@ int main(void)
 	//std::cout << fourthChildCode << std::endl;
 
 	//****************************** TEST DE GENERATION DE CODE *****************************************
-	//std::string iacodegen = IACodeGenerator::getInstance().GenerateIACode();
+	std::string iacodegen = IACodeGenerator::getInstance().GenerateIACode();
 	//std::string iacodegen("?C1LDOPU<C4U!ALDOPU?aDOPU<a5O!EBO!N");
 	//std::string iacodegen("?DHDABOBA<[86]!MBNLD[71.1]OPU!MPU");
 	//std::string iacodegen("?C1LDOPU<[32]!ALDOPU?aDOPU<a5O!EBO!N");
 	//std::string iacodegen("?m4O<M2NL5[64.6]A!MBA!MPHDOBO");
-	//std::string iacodegen("?DH6OBO<[78]!EPHDAPL0TLD[94]TL6[54]TL4[127]OPHDTHD[26]NLD[98]OPL1OPL4APL2A!AH2A");
-	std::string iacodegen("?C6H0THD[103]ABO<MDOPU!MPL6A!MBO");
+	//std::string iacodegen("?C6H0THD[103]ABO<MDOPU!MPL6A!MBO");
+	//std::string iacodegen("?M6NL6[30]A<mDAPH3O!EBA!EBO");
+	//std::string iacodegen("?[75]<[40]!N!MPLDTLD[62]APUPU");
+
 
 	//std::cout << iacodegen << std::endl;
 

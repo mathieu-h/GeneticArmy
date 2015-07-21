@@ -63,6 +63,7 @@ class ExtractorBuilder
 						}
 					}
 					else{
+						code >> c;
 						if (c == 'D'){
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
@@ -76,7 +77,7 @@ class ExtractorBuilder
 							u_ptr<Extractor<Army>> exNH(new ExtractorNH(toDigit(c), eV, eA));
 							return exNH;
 						}
-				  }
+				    }
 				}
 
 				case 'T':
@@ -88,7 +89,7 @@ class ExtractorBuilder
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-							u_ptr<Extractor<Army>> exTLD(new ExtractorTLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
+							u_ptr<Extractor<Army>> exTLD(new ExtractorTLD(eV, eA, eP));
 							return exTLD;
 						}
 						else{					
@@ -110,7 +111,7 @@ class ExtractorBuilder
 						else{
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exTH(new ExtractorTH(toDigit(c), buildValueExtractor(code), buildArmyExtractor(code)));
+							u_ptr<Extractor<Army>> exTH(new ExtractorTH(toDigit(c), eV, eA));
 							return exTH;
 						}
 					}
@@ -234,7 +235,7 @@ class ExtractorBuilder
 					if (c == 'D'){
 						u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-						u_ptr<Extractor<float>> exmD(new ExtractormD(buildArmyExtractor(code), buildPointExtractor(code)));
+						u_ptr<Extractor<float>> exmD(new ExtractormD(eA, eP));
 						return exmD;
 					}
 					else{

@@ -15,7 +15,7 @@ private:
 	//void operator=(ExtractorBuilder const&); // Don't implement
 	IACodeGenerator(){};
 	~IACodeGenerator(){};
-	int _maxTreeLength = 1;
+	int _maxTreeLength = 4;
 	int _sizecounter;
 
 public:
