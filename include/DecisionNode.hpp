@@ -43,7 +43,17 @@ public:
 	}
 
 	std::string getCode(){
-		return "?" + _extractorLeft->getCode() + _comparator + _extractorRight->getCode() + _nLeft->getCode() + _nRight->getCode();
+		std::stringstream code;
+		// Easier to debug 
+		std::string eLeft = _extractorLeft->getCode();
+		std::string eRight = _extractorRight->getCode();
+		std::string nLeft = _nLeft->getCode();
+		std::string nRight = _nRight->getCode();
+		code << "?" << eLeft << _comparator << eRight << nLeft << nRight;
+		std::string codeR = code.str();
+		// Easier to debug
+		//code << "?" << _extractorLeft->getCode() << _comparator << _extractorRight->getCode() << _nLeft->getCode() << _nRight->getCode();
+		return codeR;
 	}
 
 private:

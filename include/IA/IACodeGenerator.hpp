@@ -15,7 +15,7 @@ private:
 	//void operator=(ExtractorBuilder const&); // Don't implement
 	IACodeGenerator(){};
 	~IACodeGenerator(){};
-	int _maxTreeLength = 3;
+	int _maxTreeLength = 1;
 	int _sizecounter;
 
 public:
@@ -137,7 +137,8 @@ public:
 		case 9:
 		{
 			std::string armyCodeR = GenerateIACodeArmyExtractor();
-			armyCode << arr[dice] << "[" << GenerateIACodeRandomValue() << "]" << armyCodeR;
+			std::string pointCode = GenerateIACodePointExtractor();
+			armyCode << arr[dice] << "[" << GenerateIACodeRandomValue() << "]" << armyCodeR << pointCode;
 			break;
 		}
 		default:
@@ -159,14 +160,15 @@ public:
 		case 2:
 		{
 			std::string armyCode = GenerateIACodeArmyExtractor();
-			unitCode << arr[dice] << GenerateIACodeRandomIndex() << GenerateIACodeArmyExtractor();
+			unitCode << arr[dice] << GenerateIACodeRandomIndex() << armyCode;
 			break;
 		}
 		case 3:
 		case 4:
 		{
+			std::string armyCodeR = GenerateIACodeArmyExtractor();
 			std::string pointCode = GenerateIACodePointExtractor();
-			unitCode << arr[dice] << GenerateIACodeArmyExtractor() << pointCode;
+			unitCode << arr[dice] << armyCodeR << pointCode;
 			break;
 		}
 		default:

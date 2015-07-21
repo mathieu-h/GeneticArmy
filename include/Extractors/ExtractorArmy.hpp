@@ -149,7 +149,7 @@ private:
 	u_ptr<Extractor<float>> _eV;
 	u_ptr<Extractor<Army>> _eA;
 public:
-	ExtractorTL(u_ptr<Extractor<float>>& eV, int index, u_ptr<Extractor<Army>>& eA) : _eV(std::move(eV)), _index(index), _eA(std::move(eA)){};
+	ExtractorTL(int index, u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA) : _index(index), _eV(std::move(eV)), _eA(std::move(eA)){};
 	~ExtractorTL();
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		_eA->get(currentUnit, ally, opp).getUnitsList();
@@ -159,6 +159,7 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](s_ptr<Unit>& a){return a->getCapacity(index)->getValue() < treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+		return Army(nVUnit);
 	}	
 	
 	std::string getCode(){
@@ -175,7 +176,7 @@ private:
 	u_ptr<Extractor<float>> _eV;
 	u_ptr<Extractor<Army>> _eA;
 public:
-	ExtractorTH(u_ptr<Extractor<float>>& eV, int index, u_ptr<Extractor<Army>>& eA) : _eV(std::move(eV)), _index(index), _eA(std::move(eA)){};
+	ExtractorTH(int index, u_ptr<Extractor<float>>& eV, u_ptr<Extractor<Army>>& eA) : _index(index), _eV(std::move(eV)), _eA(std::move(eA)){};
 	~ExtractorTH();
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		_eA->get(currentUnit, ally, opp).getUnitsList();
@@ -185,6 +186,7 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](s_ptr<Unit>& a){return a->getCapacity(index)->getValue() > treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+		return Army(nVUnit);
 	}
 
 	std::string getCode(){
@@ -213,6 +215,7 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](s_ptr<Unit>& a){return a->getPosition().distance(p) < treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+		return Army(nVUnit);
 	}
 
 	std::string getCode(){
@@ -240,6 +243,7 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](s_ptr<Unit>& a){return a->getPosition().distance(p) > treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+		return Army(nVUnit);
 	}
 
 	std::string getCode(){

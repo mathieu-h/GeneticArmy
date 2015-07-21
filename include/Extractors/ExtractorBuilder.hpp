@@ -49,7 +49,6 @@ class ExtractorBuilder
 					if (c == 'L'){
 						code >> c;
 						if (c == 'D'){
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
@@ -57,7 +56,6 @@ class ExtractorBuilder
 							return exNLD;
 						}
 						else{
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Army>> exNL(new ExtractorNL(toDigit(c), eV, eA));
@@ -66,21 +64,19 @@ class ExtractorBuilder
 					}
 					else{
 						if (c == 'D'){
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-							u_ptr<Extractor<Army>> exNHD(new ExtractorNLD(eV, eA, eP));
+							u_ptr<Extractor<Army>> exNHD(new ExtractorNHD(eV, eA, eP));
 							return exNHD;
 						}
 						else{
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exNH(new ExtractorNL(toDigit(c), eV, eA));
+							u_ptr<Extractor<Army>> exNH(new ExtractorNH(toDigit(c), eV, eA));
 							return exNH;
 						}
-					}
+				  }
 				}
 
 				case 'T':
@@ -89,42 +85,39 @@ class ExtractorBuilder
 					if (c == 'L'){
 						code >> c;
 						if (c == 'D'){
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-							u_ptr<Extractor<Army>> exTLD(new ExtractorNLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
+							u_ptr<Extractor<Army>> exTLD(new ExtractorTLD(buildValueExtractor(code), buildArmyExtractor(code), buildPointExtractor(code)));
 							return exTLD;
 						}
-						else{
-							code >> c;							
+						else{					
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exTL(new ExtractorNL(toDigit(c), eV, eA));
+							u_ptr<Extractor<Army>> exTL(new ExtractorTL(toDigit(c), eV, eA));
 							return exTL;
 						}
 					}
 					else{
+						code >> c;
 						if (c == 'D'){
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
 							u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-							u_ptr<Extractor<Army>> exTHD(new ExtractorNLD(eV, eA, eP));
+							u_ptr<Extractor<Army>> exTHD(new ExtractorTHD(eV, eA, eP));
 							return exTHD;
 						}
 						else{
-							code >> c;
 							u_ptr<Extractor<float>> eV = buildValueExtractor(code);
 							u_ptr<Extractor<Army>> eA = buildArmyExtractor(code);
-							u_ptr<Extractor<Army>> exTH(new ExtractorNL(toDigit(c), buildValueExtractor(code), buildArmyExtractor(code)));
+							u_ptr<Extractor<Army>> exTH(new ExtractorTH(toDigit(c), buildValueExtractor(code), buildArmyExtractor(code)));
 							return exTH;
 						}
 					}
 				}
 				default:
 					return nullptr;
-			}
+				}
 		}
 
 		u_ptr<Extractor<Point>> buildPointExtractor(std::stringstream& code){
@@ -202,8 +195,9 @@ class ExtractorBuilder
 					float val;
 					code >> val;
 					// On consomme le ']'
-					code >> c;
 					u_ptr<Extractor<float>> exDirect(new ExtractorDirect(val));
+					code >> c;
+					return exDirect;
 				}
 				case 'C':
 				{
