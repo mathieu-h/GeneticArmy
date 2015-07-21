@@ -12,6 +12,9 @@ public:
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return ally;
 	}
+	std::string getCode(){
+		return "A";
+	}
 };
 
 class ExtractorO : public Extractor<Army>
@@ -22,6 +25,9 @@ public:
 	~ExtractorO();
 	Army get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return opp;
+	}
+	std::string getCode(){
+		return "O";
 	}
 };
 
@@ -49,6 +55,10 @@ public:
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
+
+	std::string getCode(){
+		return "NL" + _index + _eV->getCode() + _eA->getCode();
+	}
 };
 
 class ExtractorNH : public Extractor<Army>
@@ -68,6 +78,10 @@ public:
 			[&index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) > b->getCapacity(index); });
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
+	}
+
+	std::string getCode(){
+		return "NH" + _index + _eV->getCode() + _eA->getCode();
 	}
 };
 
@@ -90,6 +104,10 @@ public:
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
+
+	std::string getCode(){
+		return "NLD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+	}
 };
 
 class ExtractorNHD : public Extractor<Army>
@@ -110,6 +128,10 @@ public:
 		std::vector<s_ptr<Unit>> nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return Army(nVUnit);
 	}
+
+	std::string getCode(){
+		return "NHD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+	}
 };
 
 class ExtractorTL : public Extractor<Army>
@@ -129,6 +151,10 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](s_ptr<Unit>& a){return a->getCapacity(index)->getValue() < treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+	}	
+	
+	std::string getCode(){
+		return "TL" + _index + _eV->getCode() + _eA->getCode();
 	}
 };
 
@@ -149,6 +175,10 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&index, &treshold](s_ptr<Unit>& a){return a->getCapacity(index)->getValue() > treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+	}
+
+	std::string getCode(){
+		return "TH" + _index + _eV->getCode() + _eA->getCode();
 	}
 };
 
@@ -172,6 +202,10 @@ public:
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](s_ptr<Unit>& a){return a->getPosition().distance(p) < treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
 	}
+
+	std::string getCode(){
+		return "TLD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+	}
 };
 
 class ExtractorTHD : public Extractor<Army>
@@ -192,6 +226,10 @@ public:
 		float treshold = _eV->get(currentUnit, ally, opp);
 		auto it = std::copy_if(vUnit.begin(), vUnit.end(), nVUnit.begin(), [&p, &treshold](s_ptr<Unit>& a){return a->getPosition().distance(p) > treshold; });
 		nVUnit.resize(std::distance(nVUnit.begin(), it));
+	}
+
+	std::string getCode(){
+		return "THD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
 	}
 };
 

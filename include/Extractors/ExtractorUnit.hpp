@@ -13,6 +13,10 @@ public:
 	Unit get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return currentUnit;
 	}
+
+	std::string getCode(){
+		return "U";
+	}
 };
 
 class ExtractorL : public Extractor<Unit>
@@ -26,6 +30,10 @@ public:
 	Unit get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eA->get(currentUnit, ally, opp).getLowestUnit(_index);
 	}
+
+	std::string getCode(){
+		return "L" + _index + _eA->getCode();
+	}
 };
 
 class ExtractorH : public Extractor<Unit>
@@ -38,6 +46,10 @@ public:
 	~ExtractorH();
 	Unit get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eA->get(currentUnit, ally, opp).getHigestUnit(_index);
+	}	
+	
+	std::string getCode(){
+		return "H" + _index + _eA->getCode();
 	}
 };
 
@@ -53,6 +65,10 @@ public:
 	Unit get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return _eA->get(currentUnit, ally, opp).getNearestUnit(p);
+	}	
+	
+	std::string getCode(){
+		return "LD" + _eA->getCode() + _eP->getCode();
 	}
 };
 
@@ -68,6 +84,10 @@ public:
 	Unit get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return _eA->get(currentUnit, ally, opp).getFurthestUnit(p);
+	}
+
+	std::string getCode(){
+		return "HD" + _eA->getCode() + _eP->getCode();
 	}
 };
 #endif //_EXTRACTORUNIT_H_

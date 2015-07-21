@@ -21,7 +21,7 @@ int main(void)
 {
     std::srand(static_cast<unsigned int>(time(nullptr)));
 
-	 //TEST FOR SPLIT
+	 //TEST FOR SPLIT CHAR
 	//std::cout << "toto" << std::endl;
 	//std::stringstream code;
 	//code << "?C1<C3!EB?C2>C4!EB!AN1";
@@ -44,14 +44,20 @@ int main(void)
 	//std::cout << fourthChildCode << std::endl;
 
 	//****************************** TEST DE GENERATION DE CODE *****************************************
-	std::string iacodegen = IACodeGenerator::getInstance().GenerateIACode();
+	//std::string iacodegen = IACodeGenerator::getInstance().GenerateIACode();
+	std::string iacodegen("?C1LDOPU<C4U!ALDOPU?aDOPU<a5O!EBO!N");
 	std::cout << iacodegen << std::endl;
 
 	//*************************** TEST DE GENERATION D'ARBRE A PARTIR DU CODE ***************************
-	std::string codeTest("?C1LDOPU<C4U!ALDOPU?aDOPU<a5O!EBO!N");
 	std::stringstream codeSS;
+	codeSS << iacodegen;
+	TreeIA tree = TreeIA(codeSS);
+	std::string iacodetree = tree.getCode();
+
+	
+	//std::stringstream codeSS;
 	//char c;
-	codeSS << codeTest;
+	//codeSS << codeTest;
 	//codeSS >> c;
 
 	//char c2;
@@ -62,7 +68,7 @@ int main(void)
 	//std::cout << c2 << std::endl;
 	//std::cout << codeSS.str() << std::endl;
 
-	TreeIA tree = TreeIA(codeSS);
+	//TreeIA tree = TreeIA(codeSS);
 	//std::cout << float((rand() % 99)+(rand() % (1600 - 1200)) / 10.0) << std::endl;
 
     std::vector<std::unique_ptr<Army> > champions;

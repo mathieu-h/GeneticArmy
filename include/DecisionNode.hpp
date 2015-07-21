@@ -42,6 +42,10 @@ public:
 		return _extractorLeft->get(unit, allies, opponents) < _extractorRight->get(unit, allies, opponents) ? _nLeft->getValue(unit, allies, opponents) : _nRight->getValue(unit, allies, opponents);
 	}
 
+	std::string getCode(){
+		return "?" + _extractorLeft->getCode() + _comparator + _extractorRight->getCode() + _nLeft->getCode() + _nRight->getCode();
+	}
+
 private:
 	u_ptr <Extractor<float>> _extractorLeft;
 	u_ptr <Extractor<float>> _extractorRight;

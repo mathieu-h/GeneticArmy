@@ -79,23 +79,17 @@ public:
 		case 0:
 		case 1:
 		{
-			std::string pointCode = GenerateIACodeArmyExtractor();
+			std::string pointCode = GenerateIACodePointExtractor();
 			actionNodeCode << arr[dice] << pointCode;
 			break;
 		}
 		case 2:
 		{
-			std::string pointCode = GenerateIACodeArmyExtractor();
-			actionNodeCode << arr[dice] << pointCode;
+			std::string unitCode = GenerateIACodeUnitExtractor();
+			actionNodeCode << arr[dice] << unitCode;
 			break;
 		}
 		case 3:
-		{
-			std::string armyCode = GenerateIACodeArmyExtractor();
-			actionNodeCode << arr[dice] << armyCode;
-			break;
-		}
-		case 4:
 		{
 			actionNodeCode << arr[dice];
 			break;
@@ -111,8 +105,17 @@ public:
 		std::vector<std::string> arr = { "A", "O", "NL", "NH", "TL", "TH", "NLD", "NHD", "TLD", "THD"};
 		std::stringstream armyCode("");
 		//int dice = rand() % arr.size()-6;
-		int dice = rand() % arr.size();
+		int diceDirectArmy = rand() % 3;
+		int dice;
+		if (diceDirectArmy < 2){
+			dice = diceDirectArmy;
+		}
+		else{
+			dice = rand() % arr.size();
+		}
 
+		//dice = rand() % arr.size()+2;
+		//if (dice > arr.size()) dice -= arr.size();
 		switch (dice){
 		case 0:
 		case 1:
@@ -172,16 +175,17 @@ public:
 		return unitCode.str();
 	}
 
-	std::string GenerateIACodeValueExtractor(){
+	std::string GenerateIACodeValueExtractor(/*bool firstEx*/){
 		std::vector<std::string> arr = { "[val]", "C", "D", "M", "m", "a", "MD", "mD", "aD" };
 		std::stringstream valueCode("");
+		//std::cout << arr.size() << std::endl;
 		int dice = rand() % arr.size();
 
 		switch (dice){
 		case 0:
 		{
 			// Generates random value between 0 and 99 with one decimal
-			valueCode << "[" << GenerateIACodeRandomValue() << "]" << GenerateIACodeUnitExtractor();
+			valueCode << "[" << GenerateIACodeRandomValue() << "]" /*<< GenerateIACodeUnitExtractor()*/;
 			break;
 		}
 		case 1:
@@ -229,11 +233,11 @@ public:
 		
 		if (dice){
 			std::string unitCode = GenerateIACodeUnitExtractor();
-			pointCode.append("P") + unitCode;
+			pointCode.append("P" + unitCode);
 		}
 		else{
 			std::string armyCode = GenerateIACodeArmyExtractor();
-			pointCode.append("B") + armyCode;
+			pointCode.append("B" + armyCode);
 		}
 		//std::string codeString(pointCode.str());
 		return pointCode;

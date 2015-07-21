@@ -9,8 +9,9 @@
 
 #include "Actions/Action.hpp"
 #include "Army.hpp"
+#include "IAGetterCode.hpp"
 
-class INode
+class INode : public IAGetterCode
 {
 public:
 	virtual std::unique_ptr<Action> getValue(Unit& unit, Army& allies, Army& opponents) = 0;

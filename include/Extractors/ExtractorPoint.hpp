@@ -20,6 +20,10 @@ public:
 					/*sumY += it->getPosition().getY();*/ });
 		return vUnit.size() == 0 ? Point(.0f,.0f) : Point(sumX / vUnit.size(), sumY / vUnit.size());
 	}
+
+	std::string getCode(){
+		return "B" + _eA->getCode();
+	}
 };
 
 class ExtractorP : public Extractor<Point>
@@ -31,6 +35,10 @@ public:
 	~ExtractorP();
 	Point get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eU->get(currentUnit, ally, opp).getPosition();
+	}
+
+	std::string getCode(){
+		return "P" + _eU->getCode();
 	}
 };
 #endif //_EXTRACTORPOINT_H_

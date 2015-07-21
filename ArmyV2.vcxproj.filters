@@ -113,9 +113,6 @@
     <ClInclude Include="include\Capacity\SpeedCapacity.hpp">
       <Filter>Fichiers d%27en-tête\Capacity</Filter>
     </ClInclude>
-    <ClInclude Include="include\DecisionTree\INode.hpp">
-      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
-    </ClInclude>
     <ClInclude Include="include\IA\AI.hpp">
       <Filter>Fichiers d%27en-tête\IA</Filter>
     </ClInclude>
@@ -157,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="include\IA\IACodeGenerator.hpp">
       <Filter>Fichiers d%27en-tête\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAGetterCode.hpp">
+      <Filter>Fichiers d%27en-tête\Extracteurs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\INode.hpp">
+      <Filter>Fichiers d%27en-tête\DecisionTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

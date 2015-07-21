@@ -52,6 +52,10 @@ public:
 		}
 	}
 
+	std::string getCode(){
+		return "!" + actionType + extractorPoint->getCode() + extractorUnit->getCode();
+	}
+
 private:
 	u_ptr<Action> _action;
 	char actionType;

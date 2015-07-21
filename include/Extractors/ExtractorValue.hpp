@@ -13,6 +13,12 @@ public:
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _value;
 	}
+
+	std::string getCode(){
+		std::stringstream ss;
+		ss << "[" << _value << "]";
+		return ss.str();
+	}
 };
 
 
@@ -27,6 +33,10 @@ public:
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eU->get(currentUnit, ally, opp).getCapacity(_index)->getValue();
 	}
+
+	std::string getCode(){
+		return "C" + _index + _eU->getCode();
+	}
 };
 
 class ExtractorD : public Extractor<float>
@@ -39,6 +49,10 @@ public:
 	~ExtractorD();
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eU->get(currentUnit, ally, opp).getPosition().distance(_eP->get(currentUnit, ally, opp));
+	}
+
+	std::string getCode(){
+		return "D" + _eU->getCode() + _eP->getCode();
 	}
 };
 
@@ -54,6 +68,10 @@ public:
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eA->get(currentUnit, ally, opp).getHigestUnit(_index).getCapacity(_index)->getValue();
 	}
+
+	std::string getCode(){
+		return "M" + _index + _eA->getCode();
+	}
 };
 
 class Extractorm : public Extractor<float>
@@ -66,6 +84,10 @@ public:
 	~Extractorm();
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		return _eA->get(currentUnit, ally, opp).getLowestUnit(_index).getCapacity(_index)->getValue();
+	}	
+	
+	std::string getCode(){
+		return "m" + _index + _eA->getCode();
 	}
 };
 
@@ -85,6 +107,10 @@ public:
 				0, [&index](float a, s_ptr<Unit>& it){return a + it->getCapacity(index)->getValue(); });
 		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
 	}
+
+	std::string getCode(){
+		return "a" + _index + _eA->getCode();
+	}
 };
 
 
@@ -99,6 +125,10 @@ public:
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return _eA->get(currentUnit, ally, opp).getFurthestUnit(p).getPosition().distance(p);
+	}	
+	
+	std::string getCode(){
+		return "MD" + _eA->getCode() + _eP->getCode();
 	}
 };
 
@@ -113,6 +143,10 @@ public:
 	float get(const Unit& currentUnit, const Army& ally, const Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return _eA->get(currentUnit, ally, opp).getNearestUnit(p).getPosition().distance(p);
+	}
+
+	std::string getCode(){
+		return "mD" + _eA->getCode() + _eP->getCode();
 	}
 };
 
@@ -130,6 +164,10 @@ public:
 		float sum = std::accumulate(vUnit.begin(), vUnit.end(),
 			0, [&p](float a, s_ptr<Unit>& it){return a + it->getPosition().distance(p); });
 		return vUnit.size() == 0 ? 0.0 : sum / vUnit.size();
+	}
+
+	std::string getCode(){
+		return "aD" + _eA->getCode() + _eP->getCode();
 	}
 };
 #endif // _EXTRACTORVALUE_H_

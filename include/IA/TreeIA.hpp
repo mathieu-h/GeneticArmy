@@ -8,7 +8,7 @@
 #include "Army.hpp"
 #include "DecisionNode.hpp"
 #include "ActionNode.hpp"
-class TreeIA
+class TreeIA : public IAGetterCode
 {
 public:
     /**
@@ -25,6 +25,10 @@ public:
      */
 	std::unique_ptr<Action> operator()(Unit& unit, Army& allies, Army& opponents){
 		return treeRoot->getValue(unit, allies, opponents);
+	}
+
+	std::string getCode(){
+		return treeRoot->getCode();
 	}
 private:
 	u_ptr<DecisionNode> treeRoot;
