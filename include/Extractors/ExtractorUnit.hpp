@@ -32,7 +32,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "L" + _index + _eA->getCode();
+		std::stringstream code;
+		code << "L" << _index << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -49,7 +51,9 @@ public:
 	}	
 	
 	std::string getCode(){
-		return "H" + _index + _eA->getCode();
+		std::stringstream code;
+		code << "H" << _index << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -68,7 +72,9 @@ public:
 	}	
 	
 	std::string getCode(){
-		return "LD" + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "LD" << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
@@ -87,7 +93,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "HD" + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "HD" << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 #endif //_EXTRACTORUNIT_H_

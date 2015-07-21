@@ -57,7 +57,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "NL" + _index + _eV->getCode() + _eA->getCode();
+		std::stringstream code;
+		code << "NL" << _index << _eV->getCode() << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -81,7 +83,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "NH" + _index + _eV->getCode() + _eA->getCode();
+		std::stringstream code;
+		code << "NH" << _index << _eV->getCode() << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -106,7 +110,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "NLD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "NLD" << _eV->getCode() << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
@@ -130,15 +136,17 @@ public:
 	}
 
 	std::string getCode(){
-		return "NHD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "NHD" << _eV->getCode() << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
 class ExtractorTL : public Extractor<Army>
 {
 private:
-	u_ptr<Extractor<float>> _eV;
 	int _index;
+	u_ptr<Extractor<float>> _eV;
 	u_ptr<Extractor<Army>> _eA;
 public:
 	ExtractorTL(u_ptr<Extractor<float>>& eV, int index, u_ptr<Extractor<Army>>& eA) : _eV(std::move(eV)), _index(index), _eA(std::move(eA)){};
@@ -154,15 +162,17 @@ public:
 	}	
 	
 	std::string getCode(){
-		return "TL" + _index + _eV->getCode() + _eA->getCode();
+		std::stringstream code;
+		code << "TL" << _index << _eV->getCode() << _eA->getCode();
+		return code.str();
 	}
 };
 
 class ExtractorTH : public Extractor<Army>
 {
 private:
-	u_ptr<Extractor<float>> _eV;
 	int _index;
+	u_ptr<Extractor<float>> _eV;
 	u_ptr<Extractor<Army>> _eA;
 public:
 	ExtractorTH(u_ptr<Extractor<float>>& eV, int index, u_ptr<Extractor<Army>>& eA) : _eV(std::move(eV)), _index(index), _eA(std::move(eA)){};
@@ -178,7 +188,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "TH" + _index + _eV->getCode() + _eA->getCode();
+		std::stringstream code;
+		code << "TH" << _index << _eV->getCode() << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -204,7 +216,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "TLD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "TLD" << _eV->getCode() << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
@@ -229,7 +243,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "THD" + _eV->getCode() + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "THD" << _eV->getCode() << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 

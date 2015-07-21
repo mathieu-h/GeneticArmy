@@ -35,7 +35,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "C" + _index + _eU->getCode();
+		std::stringstream code;
+		code << "C" << _index << _eU->getCode();
+		return code.str();
 	}
 };
 
@@ -52,7 +54,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "D" + _eU->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "D" << _eU->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
@@ -70,7 +74,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "M" + _index + _eA->getCode();
+		std::stringstream code;
+		code << "M" << _index << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -87,7 +93,9 @@ public:
 	}	
 	
 	std::string getCode(){
-		return "m" + _index + _eA->getCode();
+		std::stringstream code;
+		code << "m" << _index << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -109,7 +117,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "a" + _index + _eA->getCode();
+		std::stringstream code;
+		code << "a" << _index << _eA->getCode();
+		return code.str();
 	}
 };
 
@@ -128,7 +138,9 @@ public:
 	}	
 	
 	std::string getCode(){
-		return "MD" + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "MD" << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
@@ -146,7 +158,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "mD" + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "mD" << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 
@@ -167,7 +181,9 @@ public:
 	}
 
 	std::string getCode(){
-		return "aD" + _eA->getCode() + _eP->getCode();
+		std::stringstream code;
+		code << "aD" << _eA->getCode() << _eP->getCode();
+		return code.str();
 	}
 };
 #endif // _EXTRACTORVALUE_H_

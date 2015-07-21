@@ -53,7 +53,26 @@ public:
 	}
 
 	std::string getCode(){
-		return "!" + actionType + extractorPoint->getCode() + extractorUnit->getCode();
+		if (actionType == 'M'){
+			std::stringstream code;
+			code << "!" << actionType << extractorPoint->getCode();
+			return code.str();
+		}
+		else if (actionType == 'E'){
+			std::stringstream code;
+			code << "!" << actionType << extractorPoint->getCode();
+			return code.str();
+		}
+		else if (actionType == 'A'){
+			std::stringstream code;
+			code << "!" << actionType << extractorUnit->getCode();
+			return code.str();
+		}
+		else if (actionType == 'N'){
+			std::stringstream code;
+			code << "!" << actionType;
+			return code.str();
+		}
 	}
 
 private:
