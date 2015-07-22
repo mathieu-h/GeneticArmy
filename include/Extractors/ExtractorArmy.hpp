@@ -11,7 +11,7 @@ private:
 public:
 	ExtractorA(){};
 	~ExtractorA();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		ArmyVec& vUnit = ally.getUnitsList();
 		return vUnit;
 	}
@@ -26,7 +26,7 @@ private:
 public:
 	ExtractorO(){};
 	~ExtractorO();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		return opp.getUnitsList();
 	}
 	std::string getCode(){
@@ -50,12 +50,17 @@ public:
 		return unit->getCapacity(_index) < unit2->getCapacity(_index);
 	}*/
 
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		int index = _index;
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		int numU = _eV->get(currentUnit, ally, opp);
+		
+		if (numU > vUnit.size()){
+			return vUnit;
+		}
+
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) < b->getCapacity(index); });
+			[index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) < b->getCapacity(index); });
 		ArmyVec nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return nVUnit;
 		//return nVUnit;
@@ -77,12 +82,17 @@ private:
 public:
 	ExtractorNH(int index, u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA) : _index(index), _eV(std::move(eV)), _eA(std::move(eA)){};
 	~ExtractorNH();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		int index = _index;
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		float numU = _eV->get(currentUnit, ally, opp);
+		
+		if (numU > vUnit.size()){
+			return vUnit;
+		}
+
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) > b->getCapacity(index); });
+			[index](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getCapacity(index) > b->getCapacity(index); });
 		ArmyVec nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return nVUnit;
 	}
@@ -104,12 +114,17 @@ private:
 public:
 	ExtractorNLD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorNLD();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		float numU = _eV->get(currentUnit, ally, opp);
+
+		if (numU > vUnit.size()){
+			return vUnit;
+		}
+
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&p](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getPosition().distance(p) < b->getPosition().distance(p); });
+			[p](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getPosition().distance(p) < b->getPosition().distance(p); });
 		ArmyVec nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return nVUnit;
 	}
@@ -130,12 +145,16 @@ private:
 public:
 	ExtractorNHD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorNHD();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		float numU = _eV->get(currentUnit, ally, opp);
+		if (numU > vUnit.size()){
+			return vUnit;
+		}
+
 		std::nth_element(vUnit.begin(), vUnit.begin() + numU, vUnit.end(),
-			[&p](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getPosition().distance(p) > b->getPosition().distance(p); });
+			[p](s_ptr<Unit>& a, s_ptr<Unit>& b){return a->getPosition().distance(p) > b->getPosition().distance(p); });
 		ArmyVec nVUnit(vUnit.begin(), vUnit.begin() + numU);
 		return nVUnit;
 	}
@@ -156,7 +175,7 @@ private:
 public:
 	ExtractorTL(int index, u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA) : _index(index), _eV(std::move(eV)), _eA(std::move(eA)){};
 	~ExtractorTL();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		ArmyVec nVUnit(vUnit.size());
 		int index = _index;
@@ -182,7 +201,7 @@ private:
 public:
 	ExtractorTH(int index, u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA) : _index(index), _eV(std::move(eV)), _eA(std::move(eA)){};
 	~ExtractorTH();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		ArmyVec nVUnit(vUnit.size());
 		int index = _index;
@@ -209,7 +228,7 @@ private:
 public:
 	ExtractorTLD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorTLD();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		ArmyVec nVUnit(vUnit.size());
@@ -236,7 +255,7 @@ private:
 public:
 	ExtractorTHD(u_ptr<Extractor<float>>& eV, u_ptr<Extractor<ArmyVec>>& eA, u_ptr<Extractor<Point>>& eP) : _eV(std::move(eV)), _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorTHD();
-	ArmyVec get(const Unit& currentUnit, Army& ally, Army& opp){
+	ArmyVec get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		ArmyVec nVUnit(vUnit.size());

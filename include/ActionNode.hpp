@@ -79,7 +79,7 @@ private:
 	u_ptr<Action> _action;
 	char actionType;
 	u_ptr<Extractor<Point>> extractorPoint;
-	u_ptr<Extractor<Unit>> extractorUnit;
+	u_ptr<Extractor<Unit&>> extractorUnit;
 };
 
 #endif //_ACTIONNODE_H_

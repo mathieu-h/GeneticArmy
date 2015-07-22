@@ -20,7 +20,7 @@ class Extractor : public IAGetterCode
 {
 public:
 
-	virtual R get(const Unit& currentUnit, Army& ally, Army& opp) = 0;
+	virtual R get(Unit& currentUnit, Army& ally, Army& opp) = 0;
 
 };
 

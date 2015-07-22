@@ -133,7 +133,7 @@ class ExtractorBuilder
 				}
 				case 'P':
 				{
-					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
+					u_ptr<Extractor<Unit&>> eU = buildUnitExtractor(code);
 					u_ptr<Extractor<Point>> exP(new ExtractorP(eU));
 					return exP;
 				}
@@ -142,13 +142,13 @@ class ExtractorBuilder
 			}
 		}
 
-		u_ptr<Extractor<Unit>> buildUnitExtractor(std::stringstream& code){
+		u_ptr<Extractor<Unit&>> buildUnitExtractor(std::stringstream& code){
 			char c;
 			code >> c;
 			switch (c){
 				case 'U':
 				{
-					u_ptr<Extractor<Unit>> exU(new ExtractorU());
+					u_ptr<Extractor<Unit&>> exU(new ExtractorU());
 					return exU;
 				}
 				case 'L':
@@ -157,12 +157,12 @@ class ExtractorBuilder
 					if (c == 'D'){
 						u_ptr<Extractor<ArmyVec>> eA = buildArmyExtractor(code);
 						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-						u_ptr<Extractor<Unit>> exL(new ExtractorLD(eA, eP));
+						u_ptr<Extractor<Unit&>> exL(new ExtractorLD(eA, eP));
 						return exL;
 					}
 					else{
 						u_ptr<Extractor<ArmyVec>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<Unit>> exL(new ExtractorL(toDigit(c), eA));
+						u_ptr<Extractor<Unit&>> exL(new ExtractorL(toDigit(c), eA));
 						return exL;
 					}
 				}
@@ -172,12 +172,12 @@ class ExtractorBuilder
 					if (c == 'D'){
 						u_ptr<Extractor<ArmyVec>> eA = buildArmyExtractor(code);
 						u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
-						u_ptr<Extractor<Unit>> exH(new ExtractorHD(eA, eP));
+						u_ptr<Extractor<Unit&>> exH(new ExtractorHD(eA, eP));
 						return exH;
 					}
 					else{
 						u_ptr<Extractor<ArmyVec>> eA = buildArmyExtractor(code);
-						u_ptr<Extractor<Unit>> exH(new ExtractorH(toDigit(c), eA));
+						u_ptr<Extractor<Unit&>> exH(new ExtractorH(toDigit(c), eA));
 						return exH;
 					}
 				}
@@ -203,13 +203,13 @@ class ExtractorBuilder
 				case 'C':
 				{
 					code >> c;
-					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
+					u_ptr<Extractor<Unit&>> eU = buildUnitExtractor(code);
 					u_ptr<Extractor<float>> exC(new ExtractorC(toDigit(c), eU));
 					return exC;
 				}				
 				case 'D':
 				{
-					u_ptr<Extractor<Unit>> eU = buildUnitExtractor(code);
+					u_ptr<Extractor<Unit&>> eU = buildUnitExtractor(code);
 					u_ptr<Extractor<Point>> eP = buildPointExtractor(code);
 					u_ptr<Extractor<float>> exD(new ExtractorD(eU, eP));
 					return exD;

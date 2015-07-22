@@ -14,7 +14,7 @@ void Unit::init_()
 {
     id_ = idCount_++;
     this->position_ = Point(static_cast<float>(std::rand()%100),static_cast<float>(std::rand()%100));
-	float x_ = position_.getX();
+	//float x_ = position_.getX();
 	/*
 	if (x_ > Configs::WIDTH / 2){
 		x_ = (int)Configs::WIDTH / 2;
@@ -22,7 +22,7 @@ void Unit::init_()
 	else if (x_ < -(Configs::WIDTH / 2)){
 		x_ = -((int)Configs::WIDTH / 2);
 	}*/
-	float y_ = position_.getY();
+	//float y_ = position_.getY();
 	/*
 	if (y_ > Configs::HEIGHT / 2){
 		y_ = (int)Configs::HEIGHT / 2;

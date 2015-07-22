@@ -1,16 +1,16 @@
-#ifndef _EXTRACTORUNIT_H_
+#ifndef _EXTRACTORUNIT_H_public Extractor<Unit&>
 #define _EXTRACTORUNIT_H_
 #pragma once
 #include "Extractor.hpp"
 
 
-class ExtractorU : public Extractor<Unit>
+class ExtractorU : public Extractor<Unit&>
 {
 private:
 public:
 	ExtractorU(){};
 	~ExtractorU();
-	Unit get(const Unit& currentUnit, Army& ally, Army& opp){
+	Unit& get(Unit& currentUnit, Army& ally, Army& opp){
 		return currentUnit;
 	}
 
@@ -19,7 +19,7 @@ public:
 	}
 };
 
-class ExtractorL : public Extractor<Unit>
+class ExtractorL : public Extractor<Unit&>
 {
 private: 
 	int _index;
@@ -27,7 +27,7 @@ private:
 public:
 	ExtractorL(int index, u_ptr<Extractor<ArmyVec>>& eA) : _index(index),_eA(std::move(eA)){};
 	~ExtractorL();
-	Unit get(const Unit& currentUnit, Army& ally, Army& opp){
+	Unit& get(Unit& currentUnit, Army& ally, Army& opp){
 		return Army::getLowestUnitS(_index, _eA->get(currentUnit, ally, opp));
 	}
 
@@ -38,7 +38,7 @@ public:
 	}
 };
 
-class ExtractorH : public Extractor<Unit>
+class ExtractorH : public Extractor<Unit&>
 {
 private:
 	int _index;
@@ -46,7 +46,7 @@ private:
 public:
 	ExtractorH(int index, u_ptr<Extractor<ArmyVec>>& eA) : _index(index), _eA(std::move(eA)){};
 	~ExtractorH();
-	Unit get(const Unit& currentUnit, Army& ally, Army& opp){
+	Unit& get(Unit& currentUnit, Army& ally, Army& opp){
 		return Army::getHigestUnitS(_index, _eA->get(currentUnit, ally, opp));
 	}	
 	
@@ -57,7 +57,7 @@ public:
 	}
 };
 
-class ExtractorLD : public Extractor<Unit>
+class ExtractorLD : public Extractor<Unit&>
 {
 private:
 	u_ptr<Extractor<ArmyVec>> _eA;
@@ -66,7 +66,7 @@ public:
 	ExtractorLD(u_ptr<Extractor<ArmyVec>>& eA,
 		u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorLD();
-	Unit get(const Unit& currentUnit, Army& ally, Army& opp){
+	Unit& get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 		return  Army::getNearestUnitS(p, _eA->get(currentUnit, ally, opp));
 	}	
@@ -78,7 +78,7 @@ public:
 	}
 };
 
-class ExtractorHD : public Extractor<Unit>
+class ExtractorHD : public Extractor<Unit&>
 {
 private:
 	u_ptr<Extractor<ArmyVec>> _eA;
@@ -87,7 +87,7 @@ public:
 	ExtractorHD(u_ptr<Extractor<ArmyVec>>& eA,
 		u_ptr<Extractor<Point>>& eP) : _eA(std::move(eA)), _eP(std::move(eP)){};
 	~ExtractorHD();
-	Unit get(const Unit& currentUnit, Army& ally, Army& opp){
+	Unit& get(Unit& currentUnit, Army& ally, Army& opp){
 		Point p = _eP->get(currentUnit, ally, opp);
 
 		return Army::getFurthestUnitS(p, _eA->get(currentUnit, ally, opp));
