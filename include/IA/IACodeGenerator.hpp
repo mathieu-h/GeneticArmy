@@ -15,7 +15,7 @@ private:
 	//void operator=(ExtractorBuilder const&); // Don't implement
 	IACodeGenerator(){};
 	~IACodeGenerator(){};
-	int _maxTreeLength = 4;
+	int _maxTreeLength = 1;
 	int _sizecounter;
 
 public:
@@ -44,7 +44,8 @@ public:
 	}
 
 	float GenerateIACodeRandomValue(){
-		return float((rand() % 100) + (rand() % (1600 - 1200)) / 10.0);
+		//return float((rand() % 100) + (rand() % (1600 - 1200)) / 10.0);
+		return float((rand()) % 100);
 	}
 
 	std::string GenerateIACodeDecisionNode(){
@@ -148,7 +149,7 @@ public:
 	}
 
 	std::string GenerateIACodeUnitExtractor(){
-		std::vector<std::string> arr = { "U", "H", "L", "HD", "LD" };
+		std::vector<std::string> arr = {"U", "H", "L", "HD", "LD"};
 		std::stringstream unitCode("");
 		int dice = rand() % arr.size();
 
@@ -232,7 +233,7 @@ public:
 		std::string pointCodes("PB");
 		std::string pointCode("");
 		int dice = rand() % pointCodes.size();
-		
+		//int dice = 1;
 		if (dice){
 			std::string unitCode = GenerateIACodeUnitExtractor();
 			pointCode.append("P" + unitCode);

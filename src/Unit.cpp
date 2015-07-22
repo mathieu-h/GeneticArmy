@@ -4,6 +4,8 @@
 #include "Unit.hpp"
 #include <memory>
 
+#include "IA/IACodeGenerator.hpp"
+
 //static counter used for unique id creation
 int Unit::idCount_=0;
 
@@ -44,10 +46,12 @@ void Unit::init_()
 Unit::Unit(int globalLevel)
 {
     init_();
-    if(std::rand()%2)this->iaCode_ = "L";
+	/*
+	if(std::rand()%2)this->iaCode_ = "L";
     else this->iaCode_ = "H";
     if(rand()%8==0)this->iaCode_ += "D";
-    else this->iaCode_ += '0'+ (char)(rand()%7);
+    else this->iaCode_ += '0'+ (char)(rand()%7);*/
+	this->iaCode_ = IACodeGenerator::getInstance().GenerateIACode();
     while(globalLevel--) {
         this->capacities_[std::rand()%this->capacities_.size()]->upgrade();
     }
@@ -165,6 +169,7 @@ Unit Unit::mutate()const
     }
     levels[index]--;
     levels[index2]++;
+
     return Unit(iaCode_,levels);
 }
 

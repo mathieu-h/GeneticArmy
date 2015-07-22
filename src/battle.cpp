@@ -31,7 +31,7 @@ void fight(const Army& a, const Army& b, int& scoreA, int& scoreB, bool log)
     Army B = b;
 
     //TODO Changer AI_old en AI
-	AI_old ai;
+	AI ai;
     int turn = 1;
     while(A.size()>0 && B.size()>0 && turn++ < 10000) {
 
