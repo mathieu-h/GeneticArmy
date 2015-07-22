@@ -42,7 +42,6 @@ Army& Army::operator=(Army army)
     return *this;
 }
 
-
 Unit& Army::getNearestUnit(const Point& p)
 {
     if(units_.empty())throw std::invalid_argument("empty army");
@@ -77,6 +76,40 @@ Unit& Army::getFurthestUnit(const Point& p)
     return *result;
 }
 
+Unit& Army::getNearestUnitS(const Point& p, std::vector<std::shared_ptr<Unit>>& units)
+{
+	if (units.empty())throw std::invalid_argument("empty army");
+	Unit* result = nullptr;
+	float minDist = std::numeric_limits<float>::max();
+	for (auto it = units.begin(); it != units.end(); ++it) {
+		float d = (*it)->getPosition().distance(p);
+		if (d < minDist) {
+			minDist = d;
+			result = it->get();
+		}
+	}
+	//if (result == nullptr)
+	//	std::cout << "getNearestUnit \n" << std::endl;
+	return *result;
+}
+
+Unit& Army::getFurthestUnitS(const Point& p, std::vector<std::shared_ptr<Unit>>& units)
+{
+	if (units.empty())throw std::invalid_argument("empty army");
+	Unit* result = nullptr;
+	float maxDist = -1.0f;
+	for (auto it = units.begin(); it != units.end(); ++it) {
+		float d = (*it)->getPosition().distance(p);
+		if (d > maxDist) {
+			maxDist = d;
+			result = it->get();
+		}
+	}
+	//if (result == nullptr)
+	//	std::cout << "getFurthestUnit \n" << std::endl;
+	return *result;
+}
+
 Unit& Army::getLowestUnit(int capa_index)
 {
     if(units_.empty())throw std::invalid_argument("empty army");
@@ -94,6 +127,25 @@ Unit& Army::getHigestUnit(int capa_index)
         return a->getCapacity(capa_index)->getLevel() < b->getCapacity(capa_index)->getLevel();
     });
 }
+
+Unit& Army::getLowestUnitS(int capa_index, std::vector<std::shared_ptr<Unit>>& units)
+{
+	if (units.empty())throw std::invalid_argument("empty army");
+	return **std::min_element(units.begin(), units.end(),
+		[&capa_index](const std::shared_ptr<Unit>& a, const std::shared_ptr<Unit>& b) {
+		return a->getCapacity(capa_index)->getLevel() < b->getCapacity(capa_index)->getLevel();
+	});
+}
+
+Unit& Army::getHigestUnitS(int capa_index, std::vector<std::shared_ptr<Unit>>& units)
+{
+	if (units.empty())throw std::invalid_argument("empty army");
+	return **std::max_element(units.begin(), units.end(),
+		[&capa_index](const std::shared_ptr<Unit>& a, const std::shared_ptr<Unit>& b) {
+		return a->getCapacity(capa_index)->getLevel() < b->getCapacity(capa_index)->getLevel();
+	});
+}
+
 
 void Army::purge()
 {

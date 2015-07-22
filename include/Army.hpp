@@ -64,14 +64,19 @@ public:
 
     //Get the unit the furthest from the given position
     Unit& getFurthestUnit(const Point& p);
-
+	
+	static Unit& getNearestUnitS(const Point& p, std::vector<std::shared_ptr<Unit>>& units_);
+	static Unit& getFurthestUnitS(const Point& p, std::vector<std::shared_ptr<Unit>>& units_);
 
     //Get the unit with the lowest level for the given capacity
-    Unit& getLowestUnit(int capa_index);
-
+	Unit& getLowestUnit(int capa_index);
 
     //Get the unit with the highest level for the given capacity
     Unit& getHigestUnit(int capa_index);
+
+
+	static Unit& getLowestUnitS(int capa_index, std::vector<std::shared_ptr<Unit>>& units_);
+	static Unit& getHigestUnitS(int capa_index, std::vector<std::shared_ptr<Unit>>& units_);
 
     //Remove all the units with non positive life value
     void purge();

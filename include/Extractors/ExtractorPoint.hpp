@@ -6,13 +6,13 @@
 class ExtractorB : public Extractor<Point>
 {
 private:
-	u_ptr<Extractor<Army>> _eA;
+	u_ptr<Extractor<ArmyVec>> _eA;
 public:
-	ExtractorB(u_ptr<Extractor<Army>>& eA) : _eA(std::move(eA)){};
+	ExtractorB(u_ptr<Extractor<ArmyVec>>& eA) : _eA(std::move(eA)){};
 	~ExtractorB();
 	// return the barycenter of all units in the set
-	Point get(const Unit& currentUnit, const Army& ally, const Army& opp){
-		std::vector<s_ptr<Unit>>& vUnit = _eA->get(currentUnit, ally, opp).getUnitsList();
+	Point get(const Unit& currentUnit, Army& ally, Army& opp){
+		ArmyVec& vUnit = _eA->get(currentUnit, ally, opp);
 		float sumY = std::accumulate(vUnit.begin(), vUnit.end(),
 			0, [](float a, s_ptr<Unit>& it){return a + it->getPosition().getY(); });
 		float sumX = std::accumulate(vUnit.begin(), vUnit.end(),
@@ -33,7 +33,7 @@ private:
 public:
 	ExtractorP(u_ptr<Extractor<Unit>>& eU) : _eU(std::move(eU)){};
 	~ExtractorP();
-	Point get(const Unit& currentUnit, const Army& ally, const Army& opp){
+	Point get(const Unit& currentUnit, Army& ally, Army& opp){
 		return _eU->get(currentUnit, ally, opp).getPosition();
 	}
 
