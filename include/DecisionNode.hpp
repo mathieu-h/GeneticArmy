@@ -7,8 +7,8 @@
 #include "Extractors/ExtractorBuilder.hpp"
 #include "ActionNode.hpp"
 #include "Army.hpp"
-#include "boost/algorithm/string.hpp"
-#include <boost/algorithm/string/predicate.hpp>
+//#include "boost/algorithm/string.hpp"
+//#include <boost/algorithm/string/predicate.hpp>
 
 
 class DecisionNode : public INode

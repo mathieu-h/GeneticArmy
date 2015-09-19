@@ -8,7 +8,7 @@
 #include "fstream"
 
 #include "Filters/IFilters.hpp"
-#include "boost/algorithm/string.hpp"
+//#include "boost/algorithm/string.hpp"
 #include "IA/TreeIA.hpp"
 #include "IA/IACodeGenerator.hpp"
 
